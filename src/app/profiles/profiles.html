@@ -1,0 +1,151 @@
+<div class="container">
+  <div class="profile__header">
+    <div class="profile__actions">
+      <button type="button" class="btn btn-new"
+        (click)="onNewClick()">Neues Profil</button>
+      <button type="button" class="btn btn-new">Sortieren</button>
+    </div>
+  </div>
+  <div class="profile-list">
+    
+  </div>
+  @for (item of profiles?.profileItem ?? []; track item.email) {
+    <app-profile-card [profile]="item"></app-profile-card>
+  } @empty {
+    <p>Noch keine Profile...</p>
+  }
+
+
+</div>
+
+
+<div class="modal hide" [class.show]="mode === 'new'">
+  <article class="profile-card">
+    <div class="profile-card__top">
+      <h2 class="profile-card__title">Neues Profil erstellen</h2>
+    </div>
+    <div class="profile-card__content">
+      <form class="form hide" id="new-form" (ngSubmit)="onSaveClick()">
+        <div class="form__row">
+          <label class="form__group">
+            <span class="form__label">Vorname</span>
+            <input
+              class="form__input"
+              type="text"
+              placeholder="Max"
+            />
+          </label>
+
+          <label class="form__group">
+            <span class="form__label">Nachname</span>
+            <input
+              class="form__input"
+              type="text"
+              placeholder="Mustermann"
+            />
+          </label>
+
+          <label class="form__group">
+            <span class="form__label">Geburtsdatum</span>
+            <input
+              class="form__input"
+              type="date"
+              placeholder="26.11.1990"
+            />
+          </label>
+        </div>
+
+        <hr />
+
+        <div class="form__row">
+          <label class="form__group">
+            <span class="form__label">Email</span>
+            <input
+              class="form__input"
+              type="text"
+              placeholder="beispiel@test.de"
+            />
+          </label>
+
+          <label class="form__group">
+            <span class="form__label">Telefonnummer</span>
+            <input
+              class="form__input"
+              type="text"
+              placeholder="0176 585 885 25"
+            />
+          </label>
+        </div>
+        <div class="form__row">
+          <label class="form__group">
+            <span class="form__label">Versichertennummer</span>
+            <input
+              class="form__input"
+              type="text"
+              placeholder="X123456789"
+            />
+          </label>
+
+          <label class="form__group">
+            <span class="form__label">Krankenkasse</span>
+            <input
+              class="form__input"
+              type="text"
+              placeholder="AOK Niedersachsen"
+            />
+          </label>
+        </div>
+        <hr />
+        <div class="form__row">
+          <label class="form__group">
+            <span class="form__label">Einrichtung</span>
+            <input
+              class="form__input"
+              type="text"
+              placeholder="Haus der Sonne"
+            />
+          </label>
+
+          <label class="form__group">
+            <span class="form__label">Strasse & Nummer</span>
+            <input
+              class="form__input"
+              type="text"
+              placeholder="Musterstrasse 22"
+            />
+          </label>
+
+          <label class="form__group">
+            <span class="form__label">PLZ</span>
+            <input
+              class="form__input"
+              type="text"
+              placeholder="12345"
+            />
+          </label>
+
+          <label class="form__group">
+            <span class="form__label">Ort</span>
+            <input
+              class="form__input"
+              type="text"
+              placeholder="Musterstadt"
+            />
+          </label>
+        </div>
+        <label class="form__group">
+          <span class="form__label">Beschreibung</span>
+          <textarea
+            class="form__input"
+            placeholder="Zimmer 202"
+          ></textarea>
+        </label>
+
+        <div class="profile-card__actions">
+          <button type="button" class="btn btn-edit" (click)="onSaveClick()">Speichern</button>
+          <button type="button" class="btn btn-delete" (click)="onCancelClick()">Abbrechen</button>
+        </div>
+      </form>
+    </div>
+  </article>
+</div>

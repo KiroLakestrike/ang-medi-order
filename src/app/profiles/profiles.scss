@@ -1,0 +1,49 @@
+.profile__actions {
+  display:flex;
+}
+
+.btn {
+  flex: 1;
+  min-height: 44px;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-edit {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-edit:hover {
+  background: var(--primary-hover);
+}
+
+.btn-delete {
+  background: #fee2e2;
+  color: var(--danger);
+}
+
+.btn-delete:hover {
+  background: #fecaca;
+  color: var(--danger-hover);
+}
+
+.btn-new {
+  background: #98FB98;
+  color: var(--danger);
+}
+
+.btn-new:hover {
+  background: #00FA9A;
+  color: var(--danger-hover);
+}

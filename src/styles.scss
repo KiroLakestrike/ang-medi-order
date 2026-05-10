@@ -1,1 +1,242 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --bg: #f3f6fb;
+  --surface: #ffffff;
+  --surface-2: #f8faff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --danger: #ef4444;
+  --danger-hover: #dc2626;
+  --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+  --radius: 20px;
+
+  --form-bg: #ffffff;
+  --form-border: #d7dce3;
+  --form-border-focus: #2563eb;
+  --form-text: #1f2937;
+  --form-label: #4b5563;
+  --form-placeholder: #9ca3af;
+  --form-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --form-radius: 14px;
+  --form-radius-sm: 10px;
+  --form-gap: 1rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 100%);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+.profile-card {
+  max-width: 450px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.profile-card__top {
+  background: var(--surface-2);
+  padding: 20px 20px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.profile-card__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.profile-card__subtitle {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.profile-card__content {
+  padding: 20px;
+}
+
+.modal form {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-card__content p {
+  color: var(--text);
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.profile-card__actions {
+  display: flex;
+  gap: 12px;
+  margin: 0 20px 20px;
+}
+
+.modal .profile-card__actions {
+  display: flex;
+  gap: 12px;
+  margin: 0;
+}
+.profile-card__list {
+  display: flex;
+  flex-direction: row;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.btn {
+  flex: 1;
+  min-height: 44px;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-edit {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-edit:hover {
+  background: var(--primary-hover);
+}
+
+.btn-delete {
+  background: #fee2e2;
+  color: var(--danger);
+}
+
+.btn-delete:hover {
+  background: #fecaca;
+  color: var(--danger-hover);
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 24px 16px;
+  }
+
+  .profile-card__actions {
+    flex-direction: column;
+  }
+}
+
+.modal {
+  top: 0;
+  left: 0;
+  right: 0;
+  min-width: 100wh;
+  min-height: 100vh;
+  position: absolute;
+  z-index: 12;
+  background-color: white;
+
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  padding: 1.5rem;
+  background: var(--form-bg);
+  border: 1px solid #eef1f4;
+  border-radius: var(--form-radius);
+  box-shadow: var(--form-shadow);
+  gap: 2rem;
+}
+
+.form__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--form-gap);
+}
+
+.form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.form__label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--form-label);
+}
+
+.form__input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  font: inherit;
+  color: var(--form-text);
+  background: #fff;
+  border: 1px solid var(--form-border);
+  border-radius: var(--form-radius-sm);
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.form__input::placeholder {
+  color: var(--form-placeholder);
+}
+
+.form__input:hover {
+  border-color: #b8c0cc;
+}
+
+.form__input:focus {
+  border-color: var(--form-border-focus);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+.form__input:disabled {
+  background: #f3f4f6;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+@media (max-width: 640px) {
+  .form__row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: flex;
+}
