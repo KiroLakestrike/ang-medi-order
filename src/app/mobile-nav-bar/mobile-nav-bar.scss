@@ -1,0 +1,23 @@
+nav {
+  position: absolute;
+  bottom: 0;
+  left:0;
+  right:0;
+
+  height: 120px;
+
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  border-top:2px solid black;
+}
+
+
+.nav__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
