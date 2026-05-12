@@ -11,8 +11,13 @@ nav {
   justify-content: space-around;
 
   border-top:2px solid black;
+
+  color: var(--accent-color, purple);
 }
 
+svg {
+  fill: var(--accent-color, purple);
+}
 
 .nav__item {
   display: flex;

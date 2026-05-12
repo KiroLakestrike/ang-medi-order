@@ -26,17 +26,19 @@
 }
 
 body.blue {
-  --accent-color: #2563eb;
+  --accent-color: blue;
 }
-
 
 body.green {
-  --accent-color: #2563eb;
+  --accent-color: green;
 }
 
+body.yellow {
+  --accent-color: yellow;
+}
 
-.yellow {
-  --accent-color: #2563eb;
+body.purple {
+  --accent-color: purple;
 }
 
 * {

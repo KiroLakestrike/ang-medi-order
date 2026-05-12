@@ -2,13 +2,27 @@
   <div class="setting__area">
     <h2>Darstellung</h2>
     <div class="setting__box">
-      <span>Farbe</span>
-      <!--Dropdown -->
-      <select name="colors" id="colors" (change)="onColorChange($event)">
-        <option value="green">Grün</option>
-        <option value="blue">Blau</option>
-        <option value="yellow">Gelb</option>
-      </select>
+      <h3>Farbe</h3>
+      <div class="color-picker" role="radiogroup" aria-label="Farbe wählen">
+        @for (color of config.colorList; track $index) {
+        <label class="color-option">
+          <input
+            class="color-option__input"
+            name="colorMode"
+            type="radio"
+            [value]="color"
+            (change)="onColorChange(color, config.colorList)"
+          />
+
+          <span
+            class="color-option__swatch"
+            [style.--swatch]="color"
+            [attr.aria-label]="'Farbe ' + color"
+          >
+          </span>
+        </label>
+        }
+      </div>
     </div>
   </div>
 </section>
