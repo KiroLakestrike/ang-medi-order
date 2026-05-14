@@ -1,22 +1,32 @@
 nav {
   position: absolute;
   bottom: 0;
-  left:0;
-  right:0;
+  left: 0;
+  right: 0;
 
   height: 120px;
 
-  display:flex;
+  display: flex;
   flex-direction: row;
   justify-content: space-around;
 
-  border-top:2px solid black;
+  border-top: 2px solid var(--border-color);
+  background: linear-gradient(
+    180deg,
+    var(--background-color-light) 0%,
+    var(--background-color-dark) 100%
+  );
 
   color: var(--accent-color, purple);
 }
 
 svg {
-  fill: var(--accent-color, purple);
+  fill: var(--accent-color);
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-color-light);
 }
 
 .nav__item {
@@ -25,4 +35,3 @@ svg {
   justify-content: center;
   align-items: center;
 }
-

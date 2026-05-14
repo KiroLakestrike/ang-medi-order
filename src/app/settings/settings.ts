@@ -27,7 +27,6 @@ export class Settings {
 
     // remove old classes
     document.body.classList.remove(...newList);
-
     document.body.classList.add(value);
 
     // set localStorage and config to new value
@@ -37,13 +36,15 @@ export class Settings {
 
   // brightness change settings
 
-  onBrightnessChange(event: Event) {
-    const value = (event.target as HTMLSelectElement).value;
+  onBrightnessChange(value: string, list: string[]) {
+    const newList = this.removeItemOnce([...list], value);
     console.log(value);
 
-    // set localStorage to new value & update brightnessMode
+    document.body.classList.remove(...newList);
+    document.body.classList.add(value);
+
     this.storage.setString('brightness-mode', value);
-    this.config.brightnessMode.set(value);
+    this.config.colorMode.set(value);
   }
 
   private removeItemOnce(arr: string[], value: string) {
