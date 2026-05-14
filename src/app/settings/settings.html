@@ -1,1 +1,51 @@
 <p>settings works!</p>
+<section class="settings-container">
+  <div class="setting__area">
+    <h2>Darstellung</h2>
+    <div class="setting__box">
+      <h3>Farbe</h3>
+      <div class="color-picker" role="radiogroup" aria-label="Farbe wählen">
+        @for (color of config.colorList; track $index) {
+        <label class="color-option">
+          <input
+            class="color-option__input"
+            name="colorMode"
+            type="radio"
+            [value]="color"
+            (change)="onColorChange(color, config.colorList)"
+          />
+          <span
+            class="color-option__swatch"
+            [style.--swatch]="color"
+            [attr.aria-label]="'Farbe ' + color"
+          >
+          </span>
+        </label>
+        }
+      </div>
+    </div>
+    <div class="setting__box">
+      <h3>Helligkeit</h3>
+      <div class="color-picker" role="radiogroup" aria-label="Farbe wählen">
+        @for (brightness of config.brightnessList; track $index) {
+        <label class="color-option">
+          <input
+            class="color-option__input"
+            name="brightnessMode"
+            type="radio"
+            [value]="brightness"
+            (change)="onBrightnessChange(brightness, config.brightnessList)"
+          />
+
+          <span
+            class="color-option__swatch"
+            [style.--swatch]="brightness"
+            [attr.aria-label]="'Helligkeit ' + brightness"
+            >{{ brightness }}
+          </span>
+        </label>
+        }
+      </div>
+    </div>
+  </div>
+</section>

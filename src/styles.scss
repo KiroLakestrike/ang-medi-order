@@ -1,11 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'index' as *;
 :root {
-  --bg: #f3f6fb;
-  --surface: #ffffff;
-  --surface-2: #f8faff;
-  --text: #1f2937;
-  --muted: #6b7280;
-  --border: #e5e7eb;
+  --background-color-light: #{$zinc-100};
+  --background-color-dark: #{$zinc-300};
+  --surface-color-light: #{$zinc-100};
+  --surface-color-dark: #{$zinc-200};
+
+  --text-color-light: #{$zinc-800};
+  --text-color-dark: #{$zinc-950};
+  --text-color-muted: #{$zinc-700};
+
+  --border-color: #{$zinc-800};
+
   --primary: #2563eb;
   --primary-hover: #1d4ed8;
   --danger: #ef4444;
@@ -25,6 +30,60 @@
   --form-gap: 1rem;
 }
 
+.blue {
+  --accent-color: blue;
+}
+
+.blue.dark {
+  --accent-color: darkblue;
+}
+
+.green {
+  --accent-color: green;
+}
+
+.green.dark {
+  --accent-color: darkgreen;
+}
+
+.yellow {
+  --accent-color: yellow;
+}
+
+.yellow.dark {
+  --accent-color: orange;
+}
+
+.purple {
+  --accent-color: #{$purple-900};
+}
+
+.purple.dark {
+  --accent-color: #{$purple-600};
+}
+
+.dark {
+  --background-color-light: #{$zinc-800};
+  --background-color-dark: #{$zinc-950};
+  --text-color-light: #{$zinc-100};
+  --text-color-dark: #{$zinc-300};
+  --text-color-muted: #{$zinc-400};
+
+  --border-color: #{$zinc-300};
+
+  --surface-color-light: #{$zinc-800};
+  --surface-color-dark: #{$zinc-900};
+}
+
+.contrast {
+  --background-color-light: #{$black};
+  --background-color-dark: #{$black};
+  --text-color-light: #{$white};
+  --text-color-dark: #{$white};
+  --accent-color: #{$white};
+  --border-color: #{$white};
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -33,16 +92,20 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 100%);
-  color: var(--text);
+  background: linear-gradient(
+    180deg,
+    var(--background-color-light) 0%,
+    var(--background-color-dark) 100%
+  );
+  color: var(--text-color-dark);
   min-height: 100vh;
   padding: 40px 20px;
 }
 
 .profile-card {
   max-width: 450px;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: var(--surface-color-light);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   overflow: hidden;
@@ -52,9 +115,9 @@ body {
 }
 
 .profile-card__top {
-  background: var(--surface-2);
+  background: var(--surface-color-dark);
   padding: 20px 20px 14px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .profile-card__title {
@@ -64,7 +127,7 @@ body {
 }
 
 .profile-card__subtitle {
-  color: var(--muted);
+  color: var(--text-color-muted);
   font-size: 0.95rem;
 }
 
@@ -78,7 +141,7 @@ body {
 }
 
 .profile-card__content p {
-  color: var(--text);
+  color: var(--text-color-light);
   line-height: 1.6;
   margin-bottom: 10px;
 }
