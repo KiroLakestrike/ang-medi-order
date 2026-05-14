@@ -1,23 +1,17 @@
 <div class="container">
   <div class="profile__header">
     <div class="profile__actions">
-      <button type="button" class="btn btn-new"
-        (click)="onNewClick()">Neues Profil</button>
+      <button type="button" class="btn btn-new" (click)="onNewClick()">Neues Profil</button>
       <button type="button" class="btn btn-new">Sortieren</button>
     </div>
   </div>
-  <div class="profile-list">
-    
-  </div>
+  <div class="profile-list"></div>
   @for (item of profiles?.profileItem ?? []; track item.email) {
-    <app-profile-card [profile]="item"></app-profile-card>
+  <app-profile-card [profile]="item"></app-profile-card>
   } @empty {
-    <p>Noch keine Profile...</p>
+  <p>Noch keine Profile...</p>
   }
-
-
 </div>
-
 
 <div class="modal hide" [class.show]="mode === 'new'">
   <article class="profile-card">
@@ -25,7 +19,7 @@
       <h2 class="profile-card__title">Neues Profil erstellen</h2>
     </div>
     <div class="profile-card__content">
-      <form class="form hide" id="new-form" (ngSubmit)="onSaveClick()">
+      <form class="form hide" id="new-form" #form="ngForm" (ngSubmit)="onSaveClick(form)">
         <div class="form__row">
           <label class="form__group">
             <span class="form__label">Vorname</span>
@@ -33,6 +27,8 @@
               class="form__input"
               type="text"
               placeholder="Max"
+              name="firstName"
+              [(ngModel)]="newProfile.firstName"
             />
           </label>
 
@@ -42,6 +38,8 @@
               class="form__input"
               type="text"
               placeholder="Mustermann"
+              name="lastName"
+              [(ngModel)]="newProfile.lastName"
             />
           </label>
 
@@ -51,6 +49,8 @@
               class="form__input"
               type="date"
               placeholder="26.11.1990"
+              name="dateOfBirth"
+              [(ngModel)]="newProfile.dateOfBirth"
             />
           </label>
         </div>
@@ -64,6 +64,8 @@
               class="form__input"
               type="text"
               placeholder="beispiel@test.de"
+              name="email"
+              [(ngModel)]="newProfile.email"
             />
           </label>
 
@@ -73,6 +75,8 @@
               class="form__input"
               type="text"
               placeholder="0176 585 885 25"
+              name="phone"
+              [(ngModel)]="newProfile.phone"
             />
           </label>
         </div>
@@ -83,6 +87,8 @@
               class="form__input"
               type="text"
               placeholder="X123456789"
+              name="insuranceNumber"
+              [(ngModel)]="newProfile.insuranceNumber"
             />
           </label>
 
@@ -91,6 +97,8 @@
             <input
               class="form__input"
               type="text"
+              name="insuranceName"
+              [(ngModel)]="newProfile.insuranceName"
               placeholder="AOK Niedersachsen"
             />
           </label>
@@ -102,6 +110,8 @@
             <input
               class="form__input"
               type="text"
+              name="company"
+              [(ngModel)]="newProfile.company"
               placeholder="Haus der Sonne"
             />
           </label>
@@ -111,6 +121,8 @@
             <input
               class="form__input"
               type="text"
+              name="address"
+              [(ngModel)]="newProfile.address"
               placeholder="Musterstrasse 22"
             />
           </label>
@@ -120,6 +132,8 @@
             <input
               class="form__input"
               type="text"
+              name="zip"
+              [(ngModel)]="newProfile.zip"
               placeholder="12345"
             />
           </label>
@@ -129,6 +143,8 @@
             <input
               class="form__input"
               type="text"
+              name="place"
+              [(ngModel)]="newProfile.place"
               placeholder="Musterstadt"
             />
           </label>
@@ -137,13 +153,17 @@
           <span class="form__label">Beschreibung</span>
           <textarea
             class="form__input"
+            name="description"
+            [(ngModel)]="newProfile.description"
             placeholder="Zimmer 202"
           ></textarea>
         </label>
 
         <div class="profile-card__actions">
-          <button type="button" class="btn btn-edit" (click)="onSaveClick()">Speichern</button>
-          <button type="button" class="btn btn-delete" (click)="onCancelClick()">Abbrechen</button>
+          <button type="submit" class="btn btn-edit">Speichern</button>
+          <button type="button" class="btn btn-delete" (click)="onCancelClick(form)">
+            Abbrechen
+          </button>
         </div>
       </form>
     </div>
