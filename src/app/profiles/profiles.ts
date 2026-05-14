@@ -1,6 +1,6 @@
-import { Component, input, signal, effect, OnInit } from '@angular/core';
-import { form, FormField } from '@angular/forms/signals';
-import { ProfileCard } from '../profile-card/profile-card';
+import { Component, signal, OnInit } from '@angular/core';
+import { form } from '@angular/forms/signals';
+import { ProfileCard } from './profile-card/profile-card';
 import { HandleStorageService } from '@kirolakestrike/lakestrike-services';
 
 type ProfileList = {
@@ -24,13 +24,13 @@ type ProfileItem = {
 
 @Component({
   selector: 'app-profiles',
-  imports: [ProfileCard, FormField],
+  imports: [ProfileCard],
   templateUrl: './profiles.html',
   styleUrl: './profiles.scss',
 })
 export class Profiles implements OnInit {
   constructor(public storage: HandleStorageService) {}
-  
+
   profiles: null | ProfileList = null;
   mode: 'normal' | 'new' = 'normal';
 
@@ -38,7 +38,6 @@ export class Profiles implements OnInit {
     this.profiles = this.storage.getJson('proflist');
     console.log(this.profiles);
   }
-
 
   profileModel = signal<ProfileItem>({
     firstName: '',
@@ -55,9 +54,7 @@ export class Profiles implements OnInit {
     description: '',
   });
 
-
   profileForm = form(this.profileModel);
-
 
   onNewClick() {
     this.mode = 'new';
