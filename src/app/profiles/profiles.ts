@@ -2,25 +2,8 @@ import { Component, signal, OnInit } from '@angular/core';
 import { form } from '@angular/forms/signals';
 import { ProfileCard } from './profile-card/profile-card';
 import { HandleStorageService } from '@kirolakestrike/lakestrike-services';
+import type { ProfileItem, ProfileList} from './profiles.model';
 
-type ProfileList = {
-  profileItem: ProfileItem[];
-};
-
-type ProfileItem = {
-  firstName: string;
-  lastName: string;
-  insuranceName: string;
-  insuranceNumber: string;
-  dateOfBirth: Date;
-  email: string;
-  phone: string;
-  company: string;
-  adress: string;
-  zip: string;
-  place: string;
-  description: string;
-};
 
 @Component({
   selector: 'app-profiles',
@@ -48,7 +31,7 @@ export class Profiles implements OnInit {
     email: '',
     phone: '',
     company: '',
-    adress: '',
+    address: '',
     zip: '',
     place: '',
     description: '',

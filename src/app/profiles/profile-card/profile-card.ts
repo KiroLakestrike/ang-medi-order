@@ -1,21 +1,7 @@
 import { Component, input, signal, effect } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { form, FormField } from '@angular/forms/signals';
-
-type ProfileItem = {
-  firstName: string;
-  lastName: string;
-  insuranceName: string;
-  insuranceNumber: string;
-  dateOfBirth: Date;
-  email: string;
-  phone: string;
-  company: string;
-  adress: string;
-  zip: string;
-  place: string;
-  description: string;
-};
+import type { ProfileItem } from '../profiles.model';
 
 @Component({
   selector: 'app-profile-card',
@@ -38,12 +24,11 @@ export class ProfileCard {
     email: '',
     phone: '',
     company: '',
-    adress: '',
+    address: '',
     zip: '',
     place: '',
     description: '',
   });
-
 
   profileForm = form(this.profileModel);
 
