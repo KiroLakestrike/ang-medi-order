@@ -1,8 +1,17 @@
-.profile__actions {
+.container {
+  display:flex;
+  flex-direction: column;
+  gap: 16px;
+
+  margin-bottom: 120px;
+}
+
+profile__actions {
   display:flex;
 }
 
 .btn {
+  width: 100%;
   flex: 1;
   min-height: 44px;
   border: none;
@@ -47,3 +56,4 @@
   background: #00FA9A;
   color: var(--danger-hover);
 }
+

@@ -18,6 +18,7 @@ nav {
   );
 
   color: var(--accent-color, purple);
+  z-index: 3;
 }
 
 svg {

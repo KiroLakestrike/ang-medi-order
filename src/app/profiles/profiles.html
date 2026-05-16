@@ -2,12 +2,13 @@
   <div class="profile__header">
     <div class="profile__actions">
       <button type="button" class="btn btn-new" (click)="onNewClick()">Neues Profil</button>
-      <button type="button" class="btn btn-new">Sortieren</button>
     </div>
   </div>
   <div class="profile-list"></div>
-  @for (item of profiles?.profileItem ?? []; track item.email) {
-  <app-profile-card [profile]="item"></app-profile-card>
+  @for (item of profiles.profileItem; track item.uuid) {
+  <app-profile-card [profile]="item"
+    (deleteEvent)="reloadProfiles()">
+  </app-profile-card>
   } @empty {
   <p>Noch keine Profile...</p>
   }

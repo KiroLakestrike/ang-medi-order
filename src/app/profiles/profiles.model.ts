@@ -1,4 +1,5 @@
 export interface ProfileItem {
+  uuid: string;
   firstName: string;
   lastName: string;
   insuranceName: string;

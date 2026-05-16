@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ProfileCard } from './profile-card/profile-card';
-import { HandleStorageService } from '@kirolakestrike/lakestrike-services';
+import { HandleStorageService, RandomGenService } from '@kirolakestrike/lakestrike-services';
 import type { ProfileItem, ProfileList } from './profiles.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profiles',
@@ -12,12 +13,17 @@ import type { ProfileItem, ProfileList } from './profiles.model';
   styleUrl: './profiles.scss',
 })
 export class Profiles implements OnInit {
-  constructor(public storage: HandleStorageService) {}
+  constructor(
+    public storage: HandleStorageService,
+    private randomGen: RandomGenService,
+    private router: Router,
+  ) {}
 
   profiles: ProfileList = { profileItem: [] };
   mode: 'normal' | 'new' = 'normal';
 
   newProfile: {
+    uuid: string;
     firstName: string;
     lastName: string;
     insuranceName: string;
@@ -33,12 +39,20 @@ export class Profiles implements OnInit {
   } = this.createEmptyProfile();
 
   ngOnInit(): void {
+    this.loadProfiles();
+  }
+
+  loadProfiles(): void {
     this.profiles = this.storage.getJson('proflist') ?? { profileItem: [] };
-    console.log(this.profiles);
+  }
+
+  reloadProfiles(): void {
+    this.loadProfiles();
   }
 
   createEmptyProfile() {
     return {
+      uuid: '',
       firstName: '',
       lastName: '',
       insuranceName: '',
@@ -66,6 +80,7 @@ export class Profiles implements OnInit {
 
     const profileToSave: ProfileItem = {
       ...this.newProfile,
+      uuid: this.randomGen.getUUIDv7(),
       dateOfBirth: new Date(this.newProfile.dateOfBirth),
     };
 
@@ -73,8 +88,6 @@ export class Profiles implements OnInit {
 
     this.storage.setJson('proflist', stored);
     this.profiles = stored;
-
-    console.log(this.profiles);
 
     form.resetForm();
     this.newProfile = this.createEmptyProfile();
