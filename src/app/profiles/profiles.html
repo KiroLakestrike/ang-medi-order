@@ -77,7 +77,6 @@
             <input
               class="form__input"
               type="date"
-              placeholder="26.11.1990"
               name="dateOfBirth"
               #dateOfBirth="ngModel"
               required
@@ -157,7 +156,7 @@
             @if (insuranceName.invalid && (insuranceName.touched || form.submitted)) {
             <div>
               @if(insuranceName.hasError('required')) {
-              <small class="invalid">Krankenpasse ist erforderlich</small>
+              <small class="invalid">Krankenkasse ist erforderlich</small>
               }
             </div>
             }
@@ -247,7 +246,7 @@
         </label>
 
         <div class="profile-card__actions">
-          <button type="submit" class="btn btn-edit">Speichern</button>
+          <button type="submit" class="btn btn-edit" [disabled]="form.invalid">Speichern</button>
           <button type="button" class="btn btn-delete" (click)="onCancelClick(form)">
             Abbrechen
           </button>

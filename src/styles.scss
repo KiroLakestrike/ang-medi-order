@@ -66,7 +66,7 @@
   --text-color-light: #{$zinc-100};
   --text-color-dark: #{$zinc-300};
   --text-color-muted: #{$zinc-400};
-  --text-color-muted: #{$zinc-200};
+  --text-color-place: #{$zinc-200};
 
   --border-color: #{$zinc-300};
 
@@ -79,8 +79,13 @@
   --background-color-dark: #{$black};
   --text-color-light: #{$white};
   --text-color-dark: #{$white};
-  --accent-color: #{$white};
+  --text-color-muted: #{$white};
+  --text-color-place: #{$zinc-300};
+
   --border-color: #{$white};
+
+  --surface-color-light: #{$black};
+  --surface-color-dark: #{$black};
 }
 
 * {
@@ -102,7 +107,7 @@ body {
 }
 
 .profile-card {
-  max-width: 450px;
+  max-width: 400px;
   background: var(--surface-color-light);
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
@@ -198,6 +203,10 @@ ul {
   background: var(--primary-hover);
 }
 
+.btn-edit:disabled {
+  background-color: $zinc-200;
+}
+
 .btn-delete {
   background: var(--danger);
   color: $white;
@@ -265,11 +274,11 @@ ul {
   width: 100%;
   padding: 0.9rem 1rem;
   font: inherit;
-  color: var(--text-color-place);
+  color: var(--text-color-dark);
   background: var(--surface-color-light);
-  border: 1px solid var(--border);
+  outline: 1px solid var(--border-color);
+  border: none;
   border-radius: var(--radius-sm);
-  outline: none;
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease,
@@ -307,4 +316,16 @@ ul {
 
 .show {
   display: flex;
+}
+
+input.ng-invalid.ng-touched {
+  outline: 3px solid var(--danger);
+}
+
+input.ng-valid.ng-touched {
+  outline: 3px solid var(--confirm);
+}
+
+small {
+  color: var(--danger);
 }
