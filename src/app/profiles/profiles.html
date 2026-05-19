@@ -6,9 +6,7 @@
   </div>
   <div class="profile-list"></div>
   @for (item of profiles.profileItem; track item.uuid) {
-  <app-profile-card [profile]="item"
-    (deleteEvent)="reloadProfiles()">
-  </app-profile-card>
+  <app-profile-card [profile]="item" (deleteEvent)="reloadProfiles()"> </app-profile-card>
   } @empty {
   <p>Noch keine Profile...</p>
   }
@@ -20,39 +18,78 @@
       <h2 class="profile-card__title">Neues Profil erstellen</h2>
     </div>
     <div class="profile-card__content">
-      <form class="form hide" id="new-form" #form="ngForm" (ngSubmit)="onSaveClick(form)">
+      <form
+        class="form hide"
+        id="new-form"
+        #form="ngForm"
+        (ngSubmit)="onSaveClick(form)"
+        novalidate
+      >
         <div class="form__row">
           <label class="form__group">
-            <span class="form__label">Vorname</span>
+            <span class="form__label">Vorname *</span>
             <input
               class="form__input"
               type="text"
               placeholder="Max"
               name="firstName"
+              #firstName="ngModel"
+              required
+              minlength="2"
               [(ngModel)]="newProfile.firstName"
             />
+            @if (firstName.invalid && (firstName.touched || form.submitted)) {
+            <div>
+              @if (firstName.hasError('required')) {
+              <small class="invalid">Vorname ist erforderlich.</small>
+              } @if (firstName.hasError('minlength')) {
+              <small class="invalid">Mindestens 2 Zeichen.</small>
+              }
+            </div>
+            }
           </label>
 
           <label class="form__group">
-            <span class="form__label">Nachname</span>
+            <span class="form__label">Nachname *</span>
             <input
               class="form__input"
               type="text"
               placeholder="Mustermann"
               name="lastName"
+              #lastName="ngModel"
               [(ngModel)]="newProfile.lastName"
+              required
+              minlength="2"
             />
+            @if (lastName.invalid && (lastName.touched || form.submitted)) {
+            <div>
+              @if (lastName.hasError('required')) {
+              <small class="invalid">Nachname ist erforderlich.</small>
+              } @if (lastName.hasError('minlength')) {
+              <small class="invalid">Mindestens 2 Zeichen.</small>
+              }
+            </div>
+            }
           </label>
 
           <label class="form__group">
-            <span class="form__label">Geburtsdatum</span>
+            <span class="form__label">Geburtsdatum *</span>
             <input
               class="form__input"
               type="date"
               placeholder="26.11.1990"
               name="dateOfBirth"
+              #dateOfBirth="ngModel"
+              required
               [(ngModel)]="newProfile.dateOfBirth"
             />
+            @if (dateOfBirth.invalid && (dateOfBirth.touched || form.submitted)) {
+            <div>
+              @if (dateOfBirth.hasError('required')) {
+              <small class="invalid">Geburtsdatum ist erforderlich.</small>
+              }
+            </div>
+            }
           </label>
         </div>
 
@@ -60,14 +97,25 @@
 
         <div class="form__row">
           <label class="form__group">
-            <span class="form__label">Email</span>
+            <span class="form__label">Email *</span>
             <input
               class="form__input"
               type="text"
               placeholder="beispiel@test.de"
               name="email"
+              #email="ngModel"
+              required
               [(ngModel)]="newProfile.email"
             />
+            @if (email.invalid && (email.touched || form.submitted)) {
+            <div>
+              @if(email.hasError('required')) {
+              <small class="invalid">E-mail ist erforderlich</small>
+              } @if (email.hasError('email')) {
+              <small class="invalid">Ungültige E-Mail-Adresse</small>
+              }
+            </div>
+            }
           </label>
 
           <label class="form__group">
@@ -77,6 +125,7 @@
               type="text"
               placeholder="0176 585 885 25"
               name="phone"
+              #phone="ngModel"
               [(ngModel)]="newProfile.phone"
             />
           </label>
@@ -89,19 +138,29 @@
               type="text"
               placeholder="X123456789"
               name="insuranceNumber"
+              #insuranceNumber="ngModel"
               [(ngModel)]="newProfile.insuranceNumber"
             />
           </label>
 
           <label class="form__group">
-            <span class="form__label">Krankenkasse</span>
+            <span class="form__label">Krankenkasse *</span>
             <input
               class="form__input"
               type="text"
               name="insuranceName"
+              #insuranceName="ngModel"
+              required
               [(ngModel)]="newProfile.insuranceName"
               placeholder="AOK Niedersachsen"
             />
+            @if (insuranceName.invalid && (insuranceName.touched || form.submitted)) {
+            <div>
+              @if(insuranceName.hasError('required')) {
+              <small class="invalid">Krankenpasse ist erforderlich</small>
+              }
+            </div>
+            }
           </label>
         </div>
         <hr />
@@ -118,36 +177,63 @@
           </label>
 
           <label class="form__group">
-            <span class="form__label">Strasse & Nummer</span>
+            <span class="form__label">Strasse & Nummer *</span>
             <input
               class="form__input"
               type="text"
               name="address"
+              #address="ngModel"
+              required
               [(ngModel)]="newProfile.address"
               placeholder="Musterstrasse 22"
             />
+            @if (address.invalid && (address.touched || form.submitted)) {
+            <div>
+              @if(address.hasError('required')) {
+              <small class="invalid">Adresse ist erforderlich</small>
+              }
+            </div>
+            }
           </label>
 
           <label class="form__group">
-            <span class="form__label">PLZ</span>
+            <span class="form__label">PLZ *</span>
             <input
               class="form__input"
               type="text"
               name="zip"
+              required
+              #zip="ngModel"
               [(ngModel)]="newProfile.zip"
               placeholder="12345"
             />
+            @if (zip.invalid && (zip.touched || form.submitted)) {
+            <div>
+              @if(zip.hasError('required')) {
+              <small class="invalid">Postleitzahl ist erforderlich</small>
+              }
+            </div>
+            }
           </label>
 
           <label class="form__group">
-            <span class="form__label">Ort</span>
+            <span class="form__label">Ort *</span>
             <input
               class="form__input"
               type="text"
               name="place"
+              #place="ngModel"
+              required
               [(ngModel)]="newProfile.place"
               placeholder="Musterstadt"
             />
+            @if (place.invalid && (place.touched || form.submitted)) {
+            <div>
+              @if(place.hasError('required')) {
+              <small class="invalid">Ort ist erforderlich</small>
+              }
+            </div>
+            }
           </label>
         </div>
         <label class="form__group">

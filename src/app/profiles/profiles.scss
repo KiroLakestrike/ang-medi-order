@@ -1,5 +1,5 @@
 .container {
-  display:flex;
+  display: flex;
   flex-direction: column;
   gap: 16px;
 
@@ -7,7 +7,7 @@
 }
 
 profile__actions {
-  display:flex;
+  display: flex;
 }
 
 .btn {
@@ -48,12 +48,24 @@ profile__actions {
 }
 
 .btn-new {
-  background: #98FB98;
+  background: #98fb98;
   color: var(--danger);
 }
 
 .btn-new:hover {
-  background: #00FA9A;
+  background: #00fa9a;
   color: var(--danger-hover);
 }
 
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+input.ng-valid.ng-touched {
+  border: 1px solid green;
+}
+
+
+small {
+  color: red;
+}
