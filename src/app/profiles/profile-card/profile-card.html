@@ -13,7 +13,7 @@
       </ul>
       <ul>
         <li>{{ profile().company }}</li>
-        <li>{{ profile().adress }}</li>
+        <li>{{ profile().address }}</li>
         <li>{{ profile().zip + " " + profile().place }}</li>
         <li>{{ profile().email }}</li>
         <li>{{ profile().phone }}</li>
@@ -32,7 +32,7 @@
       <h2 class="profile-card__title">Profil bearbeiten</h2>
     </div>
     <div class="profile-card__content">
-      <form class="form hide" id="edit-form" (ngSubmit)="onSaveClick()">
+      <form class="form hide" id="edit-form" (ngSubmit)="onSaveClick()" novalidate>
         <div class="form__row">
           <label class="form__group">
             <span class="form__label">Vorname</span>
@@ -127,7 +127,7 @@
               class="form__input"
               type="text"
               placeholder="Musterstrasse 22"
-              [formField]="profileForm.adress"
+              [formField]="profileForm.address"
             />
           </label>
 
