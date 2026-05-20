@@ -3,7 +3,6 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { ProfileCard } from './profile-card/profile-card';
 import { HandleStorageService, RandomGenService } from '@kirolakestrike/lakestrike-services';
 import type { ProfileItem, ProfileList } from './profiles.model';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profiles',
@@ -16,7 +15,6 @@ export class Profiles implements OnInit {
   constructor(
     public storage: HandleStorageService,
     private randomGen: RandomGenService,
-    private router: Router,
   ) {}
 
   profiles: ProfileList = { profileItem: [] };

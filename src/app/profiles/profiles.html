@@ -104,6 +104,7 @@
               name="email"
               #email="ngModel"
               required
+              email
               [(ngModel)]="newProfile.email"
             />
             @if (email.invalid && (email.touched || form.submitted)) {

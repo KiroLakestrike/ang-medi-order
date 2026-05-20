@@ -6,7 +6,6 @@ import { HandleStorageService } from '@kirolakestrike/lakestrike-services';
 
 @Component({
   selector: 'app-profile-card',
-  // wichtig: standalone-Component, sonst greifen die imports hier nicht
   standalone: true,
   imports: [DatePipe, FormField],
   templateUrl: './profile-card.html',
