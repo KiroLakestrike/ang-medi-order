@@ -13,8 +13,8 @@ import { HandleStorageService } from '@kirolakestrike/lakestrike-services';
   styleUrl: './profile-card.scss',
 })
 export class ProfileCard {
-  @Output() deleteEvent = new EventEmitter<void>();
-  
+  @Output() reloadEvent = new EventEmitter<void>();
+
   profile = input.required<ProfileItem>();
 
   // Model-Signal = Quelle der Wahrheit
@@ -34,7 +34,6 @@ export class ProfileCard {
     description: '',
   });
 
-
   profileForm = form(this.profileModel);
 
   constructor(private storage: HandleStorageService) {
@@ -51,9 +50,21 @@ export class ProfileCard {
   }
 
   onSaveClick() {
+      
+    const oldList = this.storage.getJson<ProfileList>('proflist');
     const updatedProfile = this.profileModel();
-    console.log('Updated profile', updatedProfile);
+    if (!oldList) return;
+
+    const newList: ProfileList = {
+      ...oldList,
+      profileItem: oldList.profileItem.map((item) =>
+        item.uuid === updatedProfile.uuid ? updatedProfile : item,
+      ),
+    };
+
+    this.storage.setJson('proflist', newList);
     this.mode = 'normal';
+    this.reloadEvent.emit();
   }
 
   onCancelClick() {
@@ -69,16 +80,16 @@ export class ProfileCard {
     const oldList = this.storage.getJson<ProfileList>('proflist');
     const profile = this.profile;
     if (!oldList) return;
-  
+
     const newList: ProfileList = {
-        ...oldList,
-        profileItem: oldList.profileItem.filter(
-          (item: ProfileItem) => item.uuid !== this.profile().uuid
-        ),
-      };
-    
+      ...oldList,
+      profileItem: oldList.profileItem.filter(
+        (item: ProfileItem) => item.uuid !== this.profile().uuid,
+      ),
+    };
+
     this.storage.setJson('proflist', newList);
-    this.mode = 'normal'
-    this.deleteEvent.emit();
+    this.mode = 'normal';
+    this.reloadEvent.emit();
   }
 }

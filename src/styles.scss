@@ -230,7 +230,6 @@ ul {
   color: var(--danger-hover);
 }
 
-
 @media (max-width: 640px) {
   body {
     padding: 24px 16px;
@@ -242,15 +241,16 @@ ul {
 }
 
 .modal {
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  bottom:0;
-  min-width: 100wh;
-  min-height: 100;
-  position: absolute;
+  min-width: 100vw;
+  min-height: 100vh;
+  
   z-index: 2;
   background-color: white;
+  overflow: scroll;
 
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(8px);
@@ -265,7 +265,6 @@ ul {
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
   gap: 2rem;
-  margin-bottom: 3;
 }
 
 .form__row {

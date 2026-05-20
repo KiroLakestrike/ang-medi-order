@@ -6,7 +6,7 @@
   </div>
   <div class="profile-list"></div>
   @for (item of profiles.profileItem; track item.uuid) {
-  <app-profile-card [profile]="item" (deleteEvent)="reloadProfiles()"> </app-profile-card>
+  <app-profile-card [profile]="item" (reloadEvent)="reloadProfiles()"> </app-profile-card>
   } @empty {
   <p>Noch keine Profile...</p>
   }
