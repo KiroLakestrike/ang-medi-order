@@ -203,7 +203,7 @@ ul {
   background: var(--primary-hover);
 }
 
-.btn-edit:disabled {
+.btn:disabled {
   background-color: $zinc-200;
 }
 
@@ -215,6 +215,21 @@ ul {
 .btn-delete:hover {
   background: var(--danger-hover);
 }
+
+.btn-new {
+  width: 100%;
+}
+
+.btn-new {
+  background: #98fb98;
+  color: var(--danger);
+}
+
+.btn-new:hover {
+  background: #00fa9a;
+  color: var(--danger-hover);
+}
+
 
 @media (max-width: 640px) {
   body {
@@ -230,8 +245,9 @@ ul {
   top: 0;
   left: 0;
   right: 0;
+  bottom:0;
   min-width: 100wh;
-  min-height: 100vh;
+  min-height: 100;
   position: absolute;
   z-index: 2;
   background-color: white;
