@@ -23,7 +23,7 @@ export class ProfileCard {
     lastName: '',
     insuranceName: '',
     insuranceNumber: '',
-    dateOfBirth: new Date(),
+    dateOfBirth: '',
     email: '',
     phone: '',
     company: '',

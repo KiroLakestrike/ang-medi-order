@@ -247,7 +247,7 @@ ul {
   right: 0;
   min-width: 100vw;
   min-height: 100vh;
-  
+
   z-index: 2;
   background-color: white;
   overflow: scroll;
@@ -310,7 +310,7 @@ ul {
 
 .form__input:focus {
   border-color: var(--accent-color);
-  box-shadow: 0 0 0 4px hsla(var(--accent-color) 0.12);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-color) 80%, transparent);
 }
 
 .form__input:disabled {

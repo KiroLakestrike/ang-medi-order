@@ -79,7 +79,6 @@ export class Profiles implements OnInit {
     const profileToSave: ProfileItem = {
       ...this.newProfile,
       uuid: this.randomGen.getUUIDv7(),
-      dateOfBirth: new Date(this.newProfile.dateOfBirth),
     };
 
     stored.profileItem.push(profileToSave);

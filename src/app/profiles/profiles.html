@@ -4,12 +4,12 @@
       <button type="button" class="btn btn-new" (click)="onNewClick()">Neues Profil</button>
     </div>
   </div>
-  <div class="profile-list"></div>
   @for (item of profiles.profileItem; track item.uuid) {
   <app-profile-card [profile]="item" (reloadEvent)="reloadProfiles()"> </app-profile-card>
   } @empty {
   <p>Noch keine Profile...</p>
   }
+  
 </div>
 
 <div class="modal hide" [class.show]="mode === 'new'">

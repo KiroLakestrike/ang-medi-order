@@ -4,7 +4,7 @@ export interface ProfileItem {
   lastName: string;
   insuranceName: string;
   insuranceNumber: string;
-  dateOfBirth: Date;
+  dateOfBirth: string;
   email: string;
   phone: string;
   company: string;
