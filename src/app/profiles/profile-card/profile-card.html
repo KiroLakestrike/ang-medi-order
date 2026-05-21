@@ -27,165 +27,173 @@
 </article>
 
 <div class="modal hide" [class.show]="mode === 'edit'">
-  <article class="profile-card">
-    <div class="profile-card__top">
-      <h2 class="profile-card__title">Profil bearbeiten</h2>
-    </div>
-    <div class="profile-card__content">
-      <form class="form hide" id="edit-form" (ngSubmit)="onSaveClick()" novalidate>
-        <div class="form__row">
+  <div class="modal__content">
+    <article class="profile-card">
+      <div class="profile-card__top">
+        <h2 class="profile-card__title">Profil bearbeiten</h2>
+      </div>
+      <div class="profile-card__content">
+        <form class="form hide" id="edit-form" (ngSubmit)="onSaveClick()" novalidate>
+          <div class="form__row">
+            <label class="form__group">
+              <span class="form__label">Vorname</span>
+              <input
+                class="form__input"
+                type="text"
+                placeholder="Max"
+                [formField]="profileForm.firstName"
+              />
+            </label>
+
+            <label class="form__group">
+              <span class="form__label">Nachname</span>
+              <input
+                class="form__input"
+                type="text"
+                placeholder="Mustermann"
+                [formField]="profileForm.lastName"
+              />
+            </label>
+
+            <label class="form__group">
+              <span class="form__label">Geburtsdatum</span>
+              <input
+                class="form__input"
+                type="date"
+                placeholder="26.11.1990"
+                [formField]="profileForm.dateOfBirth"
+              />
+            </label>
+          </div>
+
+          <hr />
+
+          <div class="form__row">
+            <label class="form__group">
+              <span class="form__label">Email</span>
+              <input
+                class="form__input"
+                type="text"
+                placeholder="beispiel@test.de"
+                [formField]="profileForm.email"
+              />
+            </label>
+
+            <label class="form__group">
+              <span class="form__label">Telefonnummer</span>
+              <input
+                class="form__input"
+                type="text"
+                placeholder="0176 585 885 25"
+                [formField]="profileForm.phone"
+              />
+            </label>
+          </div>
+          <div class="form__row">
+            <label class="form__group">
+              <span class="form__label">Versichertennummer</span>
+              <input
+                class="form__input"
+                type="text"
+                placeholder="X123456789"
+                [formField]="profileForm.insuranceNumber"
+              />
+            </label>
+
+            <label class="form__group">
+              <span class="form__label">Krankenkasse</span>
+              <input
+                class="form__input"
+                type="text"
+                placeholder="AOK Niedersachsen"
+                [formField]="profileForm.insuranceName"
+              />
+            </label>
+          </div>
+          <hr />
+          <div class="form__row">
+            <label class="form__group">
+              <span class="form__label">Einrichtung</span>
+              <input
+                class="form__input"
+                type="text"
+                placeholder="Haus der Sonne"
+                [formField]="profileForm.company"
+              />
+            </label>
+
+            <label class="form__group">
+              <span class="form__label">Strasse & Nummer</span>
+              <input
+                class="form__input"
+                type="text"
+                placeholder="Musterstrasse 22"
+                [formField]="profileForm.address"
+              />
+            </label>
+
+            <label class="form__group">
+              <span class="form__label">PLZ</span>
+              <input
+                class="form__input"
+                type="text"
+                placeholder="12345"
+                [formField]="profileForm.zip"
+              />
+            </label>
+
+            <label class="form__group">
+              <span class="form__label">Ort</span>
+              <input
+                class="form__input"
+                type="text"
+                placeholder="Musterstadt"
+                [formField]="profileForm.place"
+              />
+            </label>
+          </div>
           <label class="form__group">
-            <span class="form__label">Vorname</span>
-            <input
+            <span class="form__label">Beschreibung</span>
+            <textarea
               class="form__input"
-              type="text"
-              placeholder="Max"
-              [formField]="profileForm.firstName"
-            />
+              placeholder="Zimmer 202"
+              [formField]="profileForm.description"
+            ></textarea>
           </label>
 
-          <label class="form__group">
-            <span class="form__label">Nachname</span>
-            <input
-              class="form__input"
-              type="text"
-              placeholder="Mustermann"
-              [formField]="profileForm.lastName"
-            />
-          </label>
-
-          <label class="form__group">
-            <span class="form__label">Geburtsdatum</span>
-            <input
-              class="form__input"
-              type="date"
-              placeholder="26.11.1990"
-              [formField]="profileForm.dateOfBirth"
-            />
-          </label>
-        </div>
-
-        <hr />
-
-        <div class="form__row">
-          <label class="form__group">
-            <span class="form__label">Email</span>
-            <input
-              class="form__input"
-              type="text"
-              placeholder="beispiel@test.de"
-              [formField]="profileForm.email"
-            />
-          </label>
-
-          <label class="form__group">
-            <span class="form__label">Telefonnummer</span>
-            <input
-              class="form__input"
-              type="text"
-              placeholder="0176 585 885 25"
-              [formField]="profileForm.phone"
-            />
-          </label>
-        </div>
-        <div class="form__row">
-          <label class="form__group">
-            <span class="form__label">Versichertennummer</span>
-            <input
-              class="form__input"
-              type="text"
-              placeholder="X123456789"
-              [formField]="profileForm.insuranceNumber"
-            />
-          </label>
-
-          <label class="form__group">
-            <span class="form__label">Krankenkasse</span>
-            <input
-              class="form__input"
-              type="text"
-              placeholder="AOK Niedersachsen"
-              [formField]="profileForm.insuranceName"
-            />
-          </label>
-        </div>
-        <hr />
-        <div class="form__row">
-          <label class="form__group">
-            <span class="form__label">Einrichtung</span>
-            <input
-              class="form__input"
-              type="text"
-              placeholder="Haus der Sonne"
-              [formField]="profileForm.company"
-            />
-          </label>
-
-          <label class="form__group">
-            <span class="form__label">Strasse & Nummer</span>
-            <input
-              class="form__input"
-              type="text"
-              placeholder="Musterstrasse 22"
-              [formField]="profileForm.address"
-            />
-          </label>
-
-          <label class="form__group">
-            <span class="form__label">PLZ</span>
-            <input
-              class="form__input"
-              type="text"
-              placeholder="12345"
-              [formField]="profileForm.zip"
-            />
-          </label>
-
-          <label class="form__group">
-            <span class="form__label">Ort</span>
-            <input
-              class="form__input"
-              type="text"
-              placeholder="Musterstadt"
-              [formField]="profileForm.place"
-            />
-          </label>
-        </div>
-        <label class="form__group">
-          <span class="form__label">Beschreibung</span>
-          <textarea
-            class="form__input"
-            placeholder="Zimmer 202"
-            [formField]="profileForm.description"
-          ></textarea>
-        </label>
-
-        <div class="profile-card__actions">
-          <button type="button" class="btn btn-edit" (click)="onSaveClick()">Speichern</button>
-          <button type="button" class="btn btn-delete" (click)="onCancelClick()">Abbrechen</button>
-        </div>
-      </form>
-    </div>
-  </article>
+          <div class="profile-card__actions">
+            <button type="button" class="btn btn-edit" (click)="onSaveClick()">Speichern</button>
+            <button type="button" class="btn btn-delete" (click)="onCancelClick()">
+              Abbrechen
+            </button>
+          </div>
+        </form>
+      </div>
+    </article>
+  </div>
 </div>
 
 <div class="modal hide" [class.show]="mode === 'delete'">
-  <article class="profile-card">
-    <div class="profile-card__top">
-      <h2 class="profile-card__title">Profil Löschen</h2>
-    </div>
-    <div class="profile-card__content">
-      <form class="form" id="delete-form">
-        <p>
-          Sind sie sicher, dass Sie das ausgewählte Profil {{ profile().firstName + " " +
-          profile().lastName + " "}} {{ profile().dateOfBirth | date:'dd.MM.yyyy' }} Löschen
-          möchten?
-        </p>
-        <div class="profile-card__actions">
-          <button type="button" class="btn btn-edit" (click)="onDeleteConfirmClick()">Ja</button>
-          <button type="button" class="btn btn-delete" (click)="onCancelClick()">Abbrechen</button>
-        </div>
-      </form>
-    </div>
-  </article>
+  <div class="modal__content">
+    <article class="profile-card">
+      <div class="profile-card__top">
+        <h2 class="profile-card__title">Profil Löschen</h2>
+      </div>
+      <div class="profile-card__content">
+        <form class="form" id="delete-form">
+          <p>
+            Sind sie sicher, dass Sie das ausgewählte Profil {{ profile().firstName + " " +
+            profile().lastName + " "}} {{ profile().dateOfBirth | date:'dd.MM.yyyy' }} Löschen
+            möchten?
+          </p>
+          <div class="profile-card__actions">
+            <button type="button" class="btn btn-edit" (click)="onDeleteConfirmClick()">Ja</button>
+            <button type="button" class="btn btn-delete" (click)="onCancelClick()">
+              Abbrechen
+            </button>
+          </div>
+        </form>
+      </div>
+    </article>
+  </div>
 </div>

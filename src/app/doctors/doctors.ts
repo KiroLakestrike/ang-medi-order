@@ -34,17 +34,48 @@ export class Doctors implements OnInit{
       email: '',
       company: '',
     }
-  }
+  };
 
   ngOnInit(): void {
     this.loadDoctors();
-  }
+  };
 
   loadDoctors(): void {
     this.doctors = this.storage.getJson('doclist') ?? { doctorItem: [] };
-  }
+  };
 
   reloadDoctors(): void {
     this.loadDoctors()
-  }
+  };
+
+  onNewClick() {
+    this.newDoctor = this.createEmptyDoctor();
+    this.mode = 'new';
+  };
+
+  onSaveClick(form: NgForm) {
+    if (form.invalid) return;
+
+    const stored: DoctorList = this.storage.getJson('doclist') ?? { doctorItem: [] }
+
+    const doctorToSave: DoctorItem = {
+      ...this.newDoctor,
+      uuid: this.randomGen.getUUIDv7(),
+    };
+
+    stored.doctorItem.push(doctorToSave);
+
+    this.storage.setJson('doclist', stored)
+    this.doctors = stored;
+
+    form.resetForm();
+    this.newDoctor = this.createEmptyDoctor();
+    this.mode = 'normal';
+  };
+
+  onCancelClick(form: NgForm) {
+    form.resetForm();
+    this.newDoctor = this.createEmptyDoctor();
+    this.mode = 'normal';
+  };
 }

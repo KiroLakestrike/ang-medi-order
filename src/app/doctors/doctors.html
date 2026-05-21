@@ -1,1 +1,118 @@
-<p>doctors works!</p>
+<div class="container">
+  <div class="profile__header">
+    <div class="profile__actions">
+      <button type="button" class="btn btn-new" (click)="onNewClick()">Neuer Arzt</button>
+    </div>
+  </div>
+  @for (item of doctors.doctorItem; track item.uuid) {
+  <app-doctor-card [doctor]="item" (reloadEvent)="reloadDoctors()"> </app-doctor-card>
+  } @empty {
+  <p>Noch keine Ärzte...</p>
+  }
+</div>
+
+<div class="modal hide" [class.show]="mode === 'new'">
+  <div class="model__content">
+    <div class="profile-card">
+      <div class="profile-card__top">
+        <h2 class="profile-card__title">Neuen Doktor erstellen</h2>
+      </div>
+      <div class="profile-card__content">
+        <form
+          class="form hide"
+          id="new-form"
+          #form="ngForm"
+          (ngSubmit)="onSaveClick(form)"
+          novalidate
+        >
+          <div class="form__row">
+            <label class="form__group">
+              <span class="form__label">Titel</span>
+              <input
+                type="text"
+                name="title"
+                placeholder="Dr."
+                #title="ngModel"
+                class="form__input"
+                [(ngModel)]="newDoctor.title"
+              />
+            </label>
+          </div>
+          <div class="form__row">
+            <label class="form__group">
+              <span class="form__label">Anrede</span>
+              <input
+                type="text"
+                name="gender"
+                placeholder="Herr/Frau"
+                #gender="ngModel"
+                class="form__input"
+                [(ngModel)]="newDoctor.gender"
+              />
+            </label>
+            <label class="form__group">
+              <span class="form__label">Nachname</span>
+              <input
+                type="text"
+                name="lastName"
+                placeholder="Berger"
+                #lastName="ngModel"
+                class="form__input"
+                required
+                minlength="2"
+                [(ngModel)]="newDoctor.lastName"
+              />
+            </label>
+          </div>
+          <div class="form__row">
+            <label class="form__group">
+              <span class="form__label">Praxis</span>
+              <input
+                type="text"
+                name="company"
+                placeholder="Gemeinschaftspraxis Schillerbaum"
+                #company="ngModel"
+                class="form__input"
+                [(ngModel)]="newDoctor.company"
+              />
+            </label>
+          </div>
+          <div class="form__row">
+            <label class="form__group">
+              <span class="form__label">E-Mail Adresse</span>
+              <input
+                type="text"
+                name="email"
+                placeholder="doctor@praxis.de"
+                #company="ngModel"
+                class="form__input"
+                required
+                email
+                [(ngModel)]="newDoctor.email"
+              />
+            </label>
+          </div>
+          <div class="form__row">
+            <label class="form__group">
+              <span class="form__label">Beschreibung</span>
+              <input
+                type="text"
+                name="description"
+                placeholder="Hausarzt"
+                #description="ngModel"
+                class="form__input"
+                [(ngModel)]="newDoctor.description"
+              />
+            </label>
+          </div>
+          <div class="profile-card__actions">
+            <button type="submit" class="btn btn-edit" [disabled]="form.invalid">Speichern</button>
+            <button type="button" class="btn btn-delete" (click)="onCancelClick(form)">
+              Abbrechen
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

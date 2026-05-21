@@ -1,1 +1,80 @@
-<p>doctor-card works!</p>
+<div class="profile-card">
+  <div class="profile-card__top">
+    <h2 class="profile-card__title">
+      {{ doctor().gender + " " + doctor().title + " " + doctor().lastName }}
+    </h2>
+  </div>
+  <div class="profile-card__content">
+    <p>{{ doctor().description }}</p>
+
+    <div class="profile-card__list">
+      <ul>
+        <li>{{ doctor().company }}</li>
+      </ul>
+      <ul>
+        <li>{{ doctor().email }}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="profile-card__actions">
+    <button type="button" class="btn btn-edit" (click)="onEditClick()">Bearbeiten</button>
+    <button type="button" class="btn btn-delete" (click)="onDeleteClick()">Löschen</button>
+  </div>
+</div>
+
+<div class="modal hide" [class.show]="mode === 'edit'">
+  <div class="model__content">
+    <div class="profile-card">
+      <div class="profile-card__top">
+        <h2 class="profile-card__title">Neues Profil erstellen</h2>
+      </div>
+      <div class="profile-card__content">
+        <form
+          class="form hide"
+          id="new-form"
+          #form="ngForm"
+          (ngSubmit)="onSaveClick(form)"
+          novalidate
+        >
+          <div class="form__row">
+            <label class="form__group">
+              <span class="form__label">Titel</span>
+              <input
+                type="text"
+                name="title"
+                placeholder="Dr."
+                #title="ngModel"
+                class="form__input"
+                [(ngModel)]="editDoctor.title"
+              />
+            </label>
+          </div>
+          <div class="form__row">
+            <label class="form__group">
+              <span class="form__label">Anrede</span>
+              <input
+                type="text"
+                name="gender"
+                placeholder="Herr/Frau"
+                #gender="ngModel"
+                class="form__input"
+                [(ngModel)]="editDoctor.gender"
+              />
+            </label>
+            <label class="form__group">
+              <span class="form__label">Nachname</span>
+              <input
+                type="text"
+                name="lastName"
+                placeholder="Berger"
+                #lastName="ngModel"
+                class="form__input"
+                [(ngModel)]="editDoctor.lastName"
+              />
+            </label>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
