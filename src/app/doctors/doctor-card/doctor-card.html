@@ -153,3 +153,27 @@
     </div>
   </div>
 </div>
+
+<div class="modal hide" [class.show]="mode === 'delete'">
+  <div class="modal__content">
+    <article class="profile-card">
+      <div class="profile-card__top">
+        <h2 class="profile-card__title">Profil Löschen</h2>
+      </div>
+      <div class="profile-card__content">
+        <form class="form" id="delete-form">
+          <p>
+            Sind sie sicher, dass Sie den ausgewählten Arzt: {{ doctor().gender + " " +
+            doctor().title + " "}} {{ doctor().lastName }} Löschen möchten?
+          </p>
+          <div class="profile-card__actions">
+            <button type="button" class="btn btn-edit" (click)="onDeleteConfirmClick()">Ja</button>
+            <button type="button" class="btn btn-delete" (click)="onDeleteCancelClick()">
+              Abbrechen
+            </button>
+          </div>
+        </form>
+      </div>
+    </article>
+  </div>
+</div>

@@ -2,6 +2,7 @@ import { Component, EventEmitter, input, Output } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import type { DoctorItem, DoctorList } from '../doctors.models';
 import { HandleStorageService } from '@kirolakestrike/lakestrike-services';
+import { ProfileList } from '../../profiles/profiles.model';
 
 @Component({
   selector: 'app-doctor-card',
@@ -42,7 +43,20 @@ export class DoctorCard {
     this.mode = 'delete';
   }
 
-  onDeleteContirmClick() {}
+  onDeleteConfirmClick() {
+    const oldList = this.storage.getJson<DoctorList>('doclist');
+    const doctor = this.doctor;
+    if (!oldList) return;
+
+    const newList: DoctorList = {
+      ...oldList,
+      doctorItem: oldList.doctorItem.filter((item: DoctorItem) => item.uuid !== this.doctor().uuid),
+    };
+
+    this.storage.setJson('doclist', newList);
+    this.mode = 'normal';
+    this.reloadEvent.emit();
+  }
 
   onSaveClick(form: NgForm) {
     if (form.invalid) return;
@@ -65,5 +79,9 @@ export class DoctorCard {
     form.resetForm();
     this.editDoctor = this.createEditDoctor();
     this.mode = 'normal';
-  };
+  }
+
+  onDeleteCancelClick() {
+    this.mode = 'normal';
+  }
 }
