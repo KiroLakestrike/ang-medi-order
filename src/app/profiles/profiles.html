@@ -9,252 +9,251 @@
   } @empty {
   <p>Noch keine Profile...</p>
   }
-  
 </div>
 
 <div class="modal hide" [class.show]="mode === 'new'">
   <div class="modal__content">
-  <article class="profile-card">
-    <div class="profile-card__top">
-      <h2 class="profile-card__title">Neues Profil erstellen</h2>
-    </div>
-    <div class="profile-card__content">
-      <form
-        class="form hide"
-        id="new-form"
-        #form="ngForm"
-        (ngSubmit)="onSaveClick(form)"
-        novalidate
-      >
-        <div class="form__row">
-          <label class="form__group">
-            <span class="form__label">Vorname *</span>
-            <input
-              class="form__input"
-              type="text"
-              placeholder="Max"
-              name="firstName"
-              #firstName="ngModel"
-              required
-              minlength="2"
-              [(ngModel)]="newProfile.firstName"
-            />
-            @if (firstName.invalid && (firstName.touched || form.submitted)) {
-            <div>
-              @if (firstName.hasError('required')) {
-              <small class="invalid">Vorname ist erforderlich.</small>
-              } @if (firstName.hasError('minlength')) {
-              <small class="invalid">Mindestens 2 Zeichen.</small>
+    <article class="profile-card">
+      <div class="profile-card__top">
+        <h2 class="profile-card__title">Neues Profil erstellen</h2>
+      </div>
+      <div class="profile-card__content">
+        <form
+          class="form hide"
+          id="new-form"
+          #form="ngForm"
+          (ngSubmit)="onSaveClick(form)"
+          novalidate
+        >
+          <div class="form__row">
+            <label class="form__group">
+              <span class="form__label">Vorname *</span>
+              <input
+                class="form__input"
+                type="text"
+                placeholder="Max"
+                name="firstName"
+                #firstName="ngModel"
+                required
+                minlength="2"
+                [(ngModel)]="newProfile.firstName"
+              />
+              @if (firstName.invalid && (firstName.touched || form.submitted)) {
+              <div>
+                @if (firstName.hasError('required')) {
+                <small class="invalid">Vorname ist erforderlich.</small>
+                } @if (firstName.hasError('minlength')) {
+                <small class="invalid">Mindestens 2 Zeichen.</small>
+                }
+              </div>
               }
-            </div>
-            }
-          </label>
+            </label>
 
-          <label class="form__group">
-            <span class="form__label">Nachname *</span>
-            <input
-              class="form__input"
-              type="text"
-              placeholder="Mustermann"
-              name="lastName"
-              #lastName="ngModel"
-              [(ngModel)]="newProfile.lastName"
-              required
-              minlength="2"
-            />
-            @if (lastName.invalid && (lastName.touched || form.submitted)) {
-            <div>
-              @if (lastName.hasError('required')) {
-              <small class="invalid">Nachname ist erforderlich.</small>
-              } @if (lastName.hasError('minlength')) {
-              <small class="invalid">Mindestens 2 Zeichen.</small>
+            <label class="form__group">
+              <span class="form__label">Nachname *</span>
+              <input
+                class="form__input"
+                type="text"
+                placeholder="Mustermann"
+                name="lastName"
+                #lastName="ngModel"
+                [(ngModel)]="newProfile.lastName"
+                required
+                minlength="2"
+              />
+              @if (lastName.invalid && (lastName.touched || form.submitted)) {
+              <div>
+                @if (lastName.hasError('required')) {
+                <small class="invalid">Nachname ist erforderlich.</small>
+                } @if (lastName.hasError('minlength')) {
+                <small class="invalid">Mindestens 2 Zeichen.</small>
+                }
+              </div>
               }
-            </div>
-            }
-          </label>
+            </label>
 
-          <label class="form__group">
-            <span class="form__label">Geburtsdatum *</span>
-            <input
-              class="form__input"
-              type="date"
-              name="dateOfBirth"
-              #dateOfBirth="ngModel"
-              required
-              [(ngModel)]="newProfile.dateOfBirth"
-            />
-            @if (dateOfBirth.invalid && (dateOfBirth.touched || form.submitted)) {
-            <div>
-              @if (dateOfBirth.hasError('required')) {
-              <small class="invalid">Geburtsdatum ist erforderlich.</small>
+            <label class="form__group">
+              <span class="form__label">Geburtsdatum *</span>
+              <input
+                class="form__input"
+                type="date"
+                name="dateOfBirth"
+                #dateOfBirth="ngModel"
+                required
+                [(ngModel)]="newProfile.dateOfBirth"
+              />
+              @if (dateOfBirth.invalid && (dateOfBirth.touched || form.submitted)) {
+              <div>
+                @if (dateOfBirth.hasError('required')) {
+                <small class="invalid">Geburtsdatum ist erforderlich.</small>
+                }
+              </div>
               }
-            </div>
-            }
-          </label>
-        </div>
+            </label>
+          </div>
 
-        <hr />
+          <hr />
 
-        <div class="form__row">
-          <label class="form__group">
-            <span class="form__label">Email *</span>
-            <input
-              class="form__input"
-              type="text"
-              placeholder="beispiel@test.de"
-              name="email"
-              #email="ngModel"
-              required
-              email
-              [(ngModel)]="newProfile.email"
-            />
-            @if (email.invalid && (email.touched || form.submitted)) {
-            <div>
-              @if(email.hasError('required')) {
-              <small class="invalid">E-mail ist erforderlich</small>
-              } @if (email.hasError('email')) {
-              <small class="invalid">Ungültige E-Mail-Adresse</small>
+          <div class="form__row">
+            <label class="form__group">
+              <span class="form__label">Email *</span>
+              <input
+                class="form__input"
+                type="text"
+                placeholder="beispiel@test.de"
+                name="email"
+                #email="ngModel"
+                required
+                email
+                [(ngModel)]="newProfile.email"
+              />
+              @if (email.invalid && (email.touched || form.submitted)) {
+              <div>
+                @if(email.hasError('required')) {
+                <small class="invalid">E-mail ist erforderlich</small>
+                } @if (email.hasError('email')) {
+                <small class="invalid">Ungültige E-Mail-Adresse</small>
+                }
+              </div>
               }
-            </div>
-            }
-          </label>
+            </label>
 
-          <label class="form__group">
-            <span class="form__label">Telefonnummer</span>
-            <input
-              class="form__input"
-              type="text"
-              placeholder="0176 585 885 25"
-              name="phone"
-              #phone="ngModel"
-              [(ngModel)]="newProfile.phone"
-            />
-          </label>
-        </div>
-        <div class="form__row">
-          <label class="form__group">
-            <span class="form__label">Versichertennummer</span>
-            <input
-              class="form__input"
-              type="text"
-              placeholder="X123456789"
-              name="insuranceNumber"
-              #insuranceNumber="ngModel"
-              [(ngModel)]="newProfile.insuranceNumber"
-            />
-          </label>
+            <label class="form__group">
+              <span class="form__label">Telefonnummer</span>
+              <input
+                class="form__input"
+                type="text"
+                placeholder="0176 585 885 25"
+                name="phone"
+                #phone="ngModel"
+                [(ngModel)]="newProfile.phone"
+              />
+            </label>
+          </div>
+          <div class="form__row">
+            <label class="form__group">
+              <span class="form__label">Versichertennummer</span>
+              <input
+                class="form__input"
+                type="text"
+                placeholder="X123456789"
+                name="insuranceNumber"
+                #insuranceNumber="ngModel"
+                [(ngModel)]="newProfile.insuranceNumber"
+              />
+            </label>
 
-          <label class="form__group">
-            <span class="form__label">Krankenkasse *</span>
-            <input
-              class="form__input"
-              type="text"
-              name="insuranceName"
-              #insuranceName="ngModel"
-              required
-              [(ngModel)]="newProfile.insuranceName"
-              placeholder="AOK Niedersachsen"
-            />
-            @if (insuranceName.invalid && (insuranceName.touched || form.submitted)) {
-            <div>
-              @if(insuranceName.hasError('required')) {
-              <small class="invalid">Krankenkasse ist erforderlich</small>
+            <label class="form__group">
+              <span class="form__label">Krankenkasse *</span>
+              <input
+                class="form__input"
+                type="text"
+                name="insuranceName"
+                #insuranceName="ngModel"
+                required
+                [(ngModel)]="newProfile.insuranceName"
+                placeholder="AOK Niedersachsen"
+              />
+              @if (insuranceName.invalid && (insuranceName.touched || form.submitted)) {
+              <div>
+                @if(insuranceName.hasError('required')) {
+                <small class="invalid">Krankenkasse ist erforderlich</small>
+                }
+              </div>
               }
-            </div>
-            }
-          </label>
-        </div>
-        <hr />
-        <div class="form__row">
-          <label class="form__group">
-            <span class="form__label">Einrichtung</span>
-            <input
-              class="form__input"
-              type="text"
-              name="company"
-              [(ngModel)]="newProfile.company"
-              placeholder="Haus der Sonne"
-            />
-          </label>
+            </label>
+          </div>
+          <hr />
+          <div class="form__row">
+            <label class="form__group">
+              <span class="form__label">Einrichtung</span>
+              <input
+                class="form__input"
+                type="text"
+                name="company"
+                [(ngModel)]="newProfile.company"
+                placeholder="Haus der Sonne"
+              />
+            </label>
 
-          <label class="form__group">
-            <span class="form__label">Strasse & Nummer *</span>
-            <input
-              class="form__input"
-              type="text"
-              name="address"
-              #address="ngModel"
-              required
-              [(ngModel)]="newProfile.address"
-              placeholder="Musterstrasse 22"
-            />
-            @if (address.invalid && (address.touched || form.submitted)) {
-            <div>
-              @if(address.hasError('required')) {
-              <small class="invalid">Adresse ist erforderlich</small>
+            <label class="form__group">
+              <span class="form__label">Strasse & Nummer *</span>
+              <input
+                class="form__input"
+                type="text"
+                name="address"
+                #address="ngModel"
+                required
+                [(ngModel)]="newProfile.address"
+                placeholder="Musterstrasse 22"
+              />
+              @if (address.invalid && (address.touched || form.submitted)) {
+              <div>
+                @if(address.hasError('required')) {
+                <small class="invalid">Adresse ist erforderlich</small>
+                }
+              </div>
               }
-            </div>
-            }
-          </label>
+            </label>
 
-          <label class="form__group">
-            <span class="form__label">PLZ *</span>
-            <input
-              class="form__input"
-              type="text"
-              name="zip"
-              required
-              #zip="ngModel"
-              [(ngModel)]="newProfile.zip"
-              placeholder="12345"
-            />
-            @if (zip.invalid && (zip.touched || form.submitted)) {
-            <div>
-              @if(zip.hasError('required')) {
-              <small class="invalid">Postleitzahl ist erforderlich</small>
+            <label class="form__group">
+              <span class="form__label">PLZ *</span>
+              <input
+                class="form__input"
+                type="text"
+                name="zip"
+                required
+                #zip="ngModel"
+                [(ngModel)]="newProfile.zip"
+                placeholder="12345"
+              />
+              @if (zip.invalid && (zip.touched || form.submitted)) {
+              <div>
+                @if(zip.hasError('required')) {
+                <small class="invalid">Postleitzahl ist erforderlich</small>
+                }
+              </div>
               }
-            </div>
-            }
-          </label>
+            </label>
 
-          <label class="form__group">
-            <span class="form__label">Ort *</span>
-            <input
-              class="form__input"
-              type="text"
-              name="place"
-              #place="ngModel"
-              required
-              [(ngModel)]="newProfile.place"
-              placeholder="Musterstadt"
-            />
-            @if (place.invalid && (place.touched || form.submitted)) {
-            <div>
-              @if(place.hasError('required')) {
-              <small class="invalid">Ort ist erforderlich</small>
+            <label class="form__group">
+              <span class="form__label">Ort *</span>
+              <input
+                class="form__input"
+                type="text"
+                name="place"
+                #place="ngModel"
+                required
+                [(ngModel)]="newProfile.place"
+                placeholder="Musterstadt"
+              />
+              @if (place.invalid && (place.touched || form.submitted)) {
+              <div>
+                @if(place.hasError('required')) {
+                <small class="invalid">Ort ist erforderlich</small>
+                }
+              </div>
               }
-            </div>
-            }
+            </label>
+          </div>
+          <label class="form__group">
+            <span class="form__label">Beschreibung</span>
+            <textarea
+              class="form__input"
+              name="description"
+              [(ngModel)]="newProfile.description"
+              placeholder="Zimmer 202"
+            ></textarea>
           </label>
-        </div>
-        <label class="form__group">
-          <span class="form__label">Beschreibung</span>
-          <textarea
-            class="form__input"
-            name="description"
-            [(ngModel)]="newProfile.description"
-            placeholder="Zimmer 202"
-          ></textarea>
-        </label>
 
-        <div class="profile-card__actions">
-          <button type="submit" class="btn btn-edit" [disabled]="form.invalid">Speichern</button>
-          <button type="button" class="btn btn-delete" (click)="onCancelClick(form)">
-            Abbrechen
-          </button>
-        </div>
-      </form>
-    </div>
-  </article>
+          <div class="profile-card__actions">
+            <button type="submit" class="btn btn-edit" [disabled]="form.invalid">Speichern</button>
+            <button type="button" class="btn btn-delete" (click)="onCancelClick(form)">
+              Abbrechen
+            </button>
+          </div>
+        </form>
+      </div>
+    </article>
   </div>
 </div>

@@ -44,5 +44,26 @@ export class DoctorCard {
 
   onDeleteContirmClick() {}
 
-  onSaveClick(form: NgForm) {}
+  onSaveClick(form: NgForm) {
+    if (form.invalid) return;
+
+    const oldList: DoctorList = this.storage.getJson<DoctorList>('doclist') ?? { doctorItem: [] };
+
+    const newList: DoctorList = {
+      ...oldList,
+      doctorItem: oldList.doctorItem.map((item) =>
+        item.uuid === this.editDoctor.uuid ? this.editDoctor : item,
+      ),
+    };
+
+    this.storage.setJson('doclist', newList);
+    this.mode = 'normal';
+    this.reloadEvent.emit();
+  }
+
+  onCancelClick(form: NgForm) {
+    form.resetForm();
+    this.editDoctor = this.createEditDoctor();
+    this.mode = 'normal';
+  };
 }

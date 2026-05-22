@@ -47,8 +47,16 @@
                 placeholder="Herr/Frau"
                 #gender="ngModel"
                 class="form__input"
+                required
                 [(ngModel)]="newDoctor.gender"
               />
+              @if (gender.invalid && (gender.touched || form.submitted)) {
+              <div>
+                @if (gender.hasError('required')) {
+                <small class="invalid">Anrede ist erforderlich.</small>
+                }
+              </div>
+              }
             </label>
             <label class="form__group">
               <span class="form__label">Nachname</span>
@@ -62,6 +70,15 @@
                 minlength="2"
                 [(ngModel)]="newDoctor.lastName"
               />
+              @if (lastName.invalid && (lastName.touched || form.submitted)) {
+              <div>
+                @if (lastName.hasError('required')) {
+                <small class="invalid">Nachname ist erforderlich</small>
+                } @if (lastName.hasError('minlength')) {
+                <small class="invalid">Mindestens 2 Zeichen</small>
+                }
+              </div>
+              }
             </label>
           </div>
           <div class="form__row">
@@ -84,12 +101,21 @@
                 type="text"
                 name="email"
                 placeholder="doctor@praxis.de"
-                #company="ngModel"
+                #email="ngModel"
                 class="form__input"
                 required
                 email
                 [(ngModel)]="newDoctor.email"
               />
+              @if (email.invalid && (email.touched || form.submitted)) {
+              <div>
+                @if(email.hasError('required')) {
+                <small class="invalid">E-mail ist erforderlich</small>
+                } @if (email.hasError('email')) {
+                <small class="invalid">Ungültige E-Mail-Adresse</small>
+                }
+              </div>
+              }
             </label>
           </div>
           <div class="form__row">

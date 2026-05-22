@@ -26,12 +26,12 @@
   <div class="model__content">
     <div class="profile-card">
       <div class="profile-card__top">
-        <h2 class="profile-card__title">Neues Profil erstellen</h2>
+        <h2 class="profile-card__title">Arzt bearbeiten</h2>
       </div>
       <div class="profile-card__content">
         <form
           class="form hide"
-          id="new-form"
+          id="edit-form"
           #form="ngForm"
           (ngSubmit)="onSaveClick(form)"
           novalidate
@@ -58,8 +58,16 @@
                 placeholder="Herr/Frau"
                 #gender="ngModel"
                 class="form__input"
+                required
                 [(ngModel)]="editDoctor.gender"
               />
+              @if (gender.invalid && (gender.touched || form.submitted)) {
+              <div>
+                @if (gender.hasError('required')) {
+                <small class="invalid">Anrede ist erforderlich.</small>
+                }
+              </div>
+              }
             </label>
             <label class="form__group">
               <span class="form__label">Nachname</span>
@@ -69,9 +77,76 @@
                 placeholder="Berger"
                 #lastName="ngModel"
                 class="form__input"
+                required
+                minlength="2"
                 [(ngModel)]="editDoctor.lastName"
               />
+              @if (lastName.invalid && (lastName.touched || form.submitted)) {
+              <div>
+                @if (lastName.hasError('required')) {
+                <small class="invalid">Nachname ist erforderlich</small>
+                } @if (lastName.hasError('minlength')) {
+                <small class="invalid">Mindestens 2 Zeichen</small>
+                }
+              </div>
+              }
             </label>
+          </div>
+          <div class="form__row">
+            <label class="form__group">
+              <span class="form__label">Praxis</span>
+              <input
+                type="text"
+                name="company"
+                placeholder="Gemeinschaftspraxis Schillerbaum"
+                #company="ngModel"
+                class="form__input"
+                [(ngModel)]="editDoctor.company"
+              />
+            </label>
+          </div>
+          <div class="form__row">
+            <label class="form__group">
+              <span class="form__label">E-Mail Adresse</span>
+              <input
+                type="text"
+                name="email"
+                placeholder="doctor@praxis.de"
+                #email="ngModel"
+                class="form__input"
+                required
+                email
+                [(ngModel)]="editDoctor.email"
+              />
+              @if (email.invalid && (email.touched || form.submitted)) {
+              <div>
+                @if(email.hasError('required')) {
+                <small class="invalid">E-mail ist erforderlich</small>
+                } @if (email.hasError('email')) {
+                <small class="invalid">Ungültige E-Mail-Adresse</small>
+                }
+              </div>
+              }
+            </label>
+          </div>
+          <div class="form__row">
+            <label class="form__group">
+              <span class="form__label">Beschreibung</span>
+              <input
+                type="text"
+                name="description"
+                placeholder="Hausarzt"
+                #description="ngModel"
+                class="form__input"
+                [(ngModel)]="editDoctor.description"
+              />
+            </label>
+          </div>
+          <div class="profile-card__actions">
+            <button type="submit" class="btn btn-edit" [disabled]="form.invalid">Speichern</button>
+            <button type="button" class="btn btn-delete" (click)="onCancelClick(form)">
+              Abbrechen
+            </button>
           </div>
         </form>
       </div>
