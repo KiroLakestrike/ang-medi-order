@@ -1,11 +1,11 @@
-mat-icon {
-  width: 20px;
-  height: 20px;
-  color: var(--accent-color);
-}
-
 .medication-container{
   display:flex;
   flex-direction: column;
   width: 200px;
+}
+
+mat-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--text-color-dark);
 }

@@ -7,14 +7,20 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class IconService {
   private matIconRegistry = inject(MatIconRegistry);
-  private domSenitizer = inject(DomSanitizer);
+  private domSanitizer = inject(DomSanitizer);
+
+  iconList = ['delete', 'edit'];
 
   init(): void {
-    this.register('test');
+    this.iconList.forEach((icon) => {
+      this.register(icon);
+    });
   }
 
   private register(name: string): void {
-    this.matIconRegistry.addSvgIcon(name, this.domSenitizer.bypassSecurityTrustResourceUrl(`/icons/${name}.svg`))
+    this.matIconRegistry.addSvgIcon(
+      name,
+      this.domSanitizer.bypassSecurityTrustResourceUrl(`/icons/${name}.svg`),
+    );
   }
-  
 }
