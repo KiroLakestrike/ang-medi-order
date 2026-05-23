@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MedicationCard } from './medication-card/medication-card';
 import { MedicationForm } from './medication-form/medication-form';
-import { MedicationList } from './medication.model';
+import { MedicationItem, MedicationList } from './medication.model';
 import { HandleStorageService } from '@kirolakestrike/lakestrike-services';
 import { DoctorList } from '../doctors/doctors.models';
 
@@ -19,6 +19,7 @@ export class Medications implements OnInit {
 
   activeDoctor = '';
   activeMedication = '';
+  selectedMedication: MedicationItem | null = null;
 
   medicationList: MedicationList = { medicationItem: [] };
   doctorList: DoctorList = { doctorItem: [] };
@@ -53,6 +54,11 @@ export class Medications implements OnInit {
   }
 
   reloadMedications(): void {
+    this.mode = 'normal';
+    this.formMode = 'none';
+    this.activeDoctor = '';
+    this.activeMedication = '';
+    this.selectedMedication = null;
     this.loadMedications();
   }
 
@@ -61,6 +67,7 @@ export class Medications implements OnInit {
     this.formMode = 'new';
     this.activeDoctor = uuid;
     this.activeMedication = '';
+    this.selectedMedication = null;
   }
 
   onFormChange(event: { mode: 'edit' | 'delete'; medicationId: string; doctorId: string }): void {
@@ -68,5 +75,8 @@ export class Medications implements OnInit {
     this.formMode = event.mode;
     this.activeMedication = event.medicationId;
     this.activeDoctor = event.doctorId;
+
+    this.selectedMedication =
+      this.medicationList.medicationItem.find(item => item.uuid === event.medicationId) ?? null;
   }
 }

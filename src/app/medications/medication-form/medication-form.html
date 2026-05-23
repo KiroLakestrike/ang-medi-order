@@ -1,16 +1,90 @@
 <div class="profile-card">
-  <p>
-    @if (mode() === 'new') {
-      Neues Medikament erstellen
+  <div class="profile-card__top">
+    <h2 class="profile-card__title">
+      @if (mode() === 'new') { Neues Medikament } @if(mode()=== 'edit') { Medikament bearbeiten }
+      @if (mode() === 'delete') { Medikament Löschen }
+    </h2>
+  </div>
+  <div class="profile-card__content">
+    @if(mode()==='new' || mode()=== 'edit') {
+    <form class="form" id="form" #medForm="ngForm" (ngSubmit)="submitForm(medForm)" novalidation>
+      <div class="form__row">
+        <label class="form__group">
+          <span class="form__label">Medikament Name</span>
+          <input
+            type="text"
+            name="name"
+            placeholder="Ibudoof 50 mg"
+            #name="ngModel"
+            class="form__input"
+            [(ngModel)]="medicationItem.name"
+            required
+            minlength="2"
+          />
+          @if (name.invalid && (name.touched || medForm.submitted)) {
+          <div>
+            @if (name.hasError('required')) {
+            <small class="invalid">Medikamentenname ist erforderlich</small>
+            } @if(name.hasError('minlength')) {
+            <small class="invalid">Mindestens 2 Zeichen</small>
+            }
+          </div>
+          }
+        </label>
+      </div>
+      <div class="form__row">
+        <label class="form__group">
+          <span class="form__label">Symbol</span>
+          <input
+            type="text"
+            name="symbol"
+            placeholder="test"
+            #symbol="ngModel"
+            class="form__input"
+            [(ngModel)]="medicationItem.symbol"
+            required
+          />
+          @if (name.invalid && (name.touched || medForm.submitted)) {
+          <div>
+            @if (name.hasError('required')) {
+            <small class="invalid">Medikamentenname ist erforderlich</small>
+            }
+          </div>
+          }
+        </label>
+      </div>
+      <div class="form__row">
+        <label class="form__group">
+          <span class="form__label">Beschreibung</span>
+          <textarea
+            name="description"
+            rows="3"
+            placeholder="Herzmedikamente bei hohem Blutdruck"
+            #description="ngModel"
+            class="form__input"
+            [(ngModel)]="medicationItem.description"
+          ></textarea>
+        </label>
+      </div>
+      <div class="profile-card__actions">
+        <button type="submit" class="btn btn-edit" [disabled]="medForm.invalid">
+          {{ mode() === 'new' ? 'Medikament erstellen' : 'Änderungen Speichern' }}
+        </button>
+        <button type="button" class="btn btn-delete" (click)="cancelClick(medForm)">
+          Abbrechen
+        </button>
+      </div>
+    </form>
+    } @if (mode() === 'delete') {
+    <p>Sicher dass sie</p>
+    <div class="profile-card__actions">
+      <button type="button" class="btn btn-edit" (click)="confirmDelete()">
+        Löschen
+      </button>
+      <button type="button" class="btn btn-delete" (click)="cancelDelete()">
+        Abbrechen
+      </button>
+    </div>
     }
-    @if (mode() === 'edit') {
-      Medikament bearbeiten
-    }
-    @if (mode() === 'delete') {
-      Medikament löschen
-    }
-  </p>
-
-  <p>Current Doctor: {{ doctor() }}</p>
-  <p>Current Medication: {{ medicationId() }}</p>
+  </div>
 </div>

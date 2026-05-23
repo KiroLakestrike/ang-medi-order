@@ -3,3 +3,9 @@ mat-icon {
   height: 20px;
   color: var(--accent-color);
 }
+
+.medication-container{
+  display:flex;
+  flex-direction: column;
+  width: 200px;
+}
