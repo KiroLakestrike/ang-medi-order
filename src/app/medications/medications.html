@@ -1,1 +1,16 @@
-<p>medications works!</p>
+<div class="container">
+  <div class="profile__header">
+    <div class="profile__actions">
+      <button type="button" class="btn btn-new" (click)="onNewClick()"></button>
+    </div>
+  </div>
+  @for (item of medicationList.medicationItem; track item.uuid) {
+  <app-doctor-card (reloadEvent)="reloadMedications()"> </app-doctor-card>
+  } @empty {
+  <p>Noch keine Medis...</p>
+  }
+</div>
+
+<div class="modal hide" [class.show]="mode === 'modal'">
+  <app-medication-form></app-medication-form>
+</div>
