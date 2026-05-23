@@ -91,8 +91,8 @@ export class Profiles implements OnInit {
     this.mode = 'normal';
   }
 
-  onCancelClick(form?: NgForm) {
-    form?.resetForm();
+  onCancelClick(form: NgForm) {
+    form.resetForm();
     this.newProfile = this.createEmptyProfile();
     this.mode = 'normal';
   }

@@ -1,24 +1,41 @@
-<div class="container">
-  <div class="profile__header">
-    <div class="profile__actions">
-      <button type="button" class="btn btn-new" (click)="onNewClick()">Neuer Arzt</button>
+<div class="profile-card">
+  <div class="profile-card__top">
+    <h2 class="profile-card__title">
+      {{ doctor().gender + " " + doctor().title + " " + doctor().lastName }}
+    </h2>
+  </div>
+  <div class="profile-card__content">
+    <p>{{ doctor().description }}</p>
+
+    <div class="profile-card__list">
+      <ul>
+        <li>{{ doctor().company }}</li>
+      </ul>
+      <ul>
+        <li>{{ doctor().email }}</li>
+      </ul>
     </div>
   </div>
-  @for (item of doctors.doctorItem; track item.uuid) {
-  <app-doctor-card [doctor]="item" (reloadEvent)="reloadDoctors()"> </app-doctor-card>
-  } @empty {
-  <p>Noch keine Ärzte...</p>
-  }
+  <div class="profile-card__actions">
+    <button type="button" class="btn btn-edit" (click)="onEditClick()">Bearbeiten</button>
+    <button type="button" class="btn btn-delete" (click)="onDeleteClick()">Löschen</button>
+  </div>
 </div>
 
-<div class="modal hide" [class.show]="mode === 'new'">
+<div class="modal hide" [class.show]="mode === 'edit'">
   <div class="modal__content">
     <div class="profile-card">
       <div class="profile-card__top">
-        <h2 class="profile-card__title">Neuen Doktor erstellen</h2>
+        <h2 class="profile-card__title">Arzt bearbeiten</h2>
       </div>
       <div class="profile-card__content">
-        <form class="form" id="new-form" #form="ngForm" (ngSubmit)="onSaveClick(form)" novalidate>
+        <form
+          class="form"
+          id="edit-form"
+          #form="ngForm"
+          (ngSubmit)="onSaveClick(form)"
+          novalidate
+        >
           <div class="form__row">
             <label class="form__group">
               <span class="form__label">Titel</span>
@@ -28,7 +45,7 @@
                 placeholder="Dr."
                 #title="ngModel"
                 class="form__input"
-                [(ngModel)]="newDoctor.title"
+                [(ngModel)]="editDoctor.title"
               />
             </label>
           </div>
@@ -42,7 +59,7 @@
                 #gender="ngModel"
                 class="form__input"
                 required
-                [(ngModel)]="newDoctor.gender"
+                [(ngModel)]="editDoctor.gender"
               />
               @if (gender.invalid && (gender.touched || form.submitted)) {
               <div>
@@ -62,7 +79,7 @@
                 class="form__input"
                 required
                 minlength="2"
-                [(ngModel)]="newDoctor.lastName"
+                [(ngModel)]="editDoctor.lastName"
               />
               @if (lastName.invalid && (lastName.touched || form.submitted)) {
               <div>
@@ -84,7 +101,7 @@
                 placeholder="Gemeinschaftspraxis Schillerbaum"
                 #company="ngModel"
                 class="form__input"
-                [(ngModel)]="newDoctor.company"
+                [(ngModel)]="editDoctor.company"
               />
             </label>
           </div>
@@ -99,7 +116,7 @@
                 class="form__input"
                 required
                 email
-                [(ngModel)]="newDoctor.email"
+                [(ngModel)]="editDoctor.email"
               />
               @if (email.invalid && (email.touched || form.submitted)) {
               <div>
@@ -121,7 +138,7 @@
                 placeholder="Hausarzt"
                 #description="ngModel"
                 class="form__input"
-                [(ngModel)]="newDoctor.description"
+                [(ngModel)]="editDoctor.description"
               />
             </label>
           </div>
@@ -134,5 +151,29 @@
         </form>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="modal hide" [class.show]="mode === 'delete'">
+  <div class="modal__content">
+    <article class="profile-card">
+      <div class="profile-card__top">
+        <h2 class="profile-card__title">Profil Löschen</h2>
+      </div>
+      <div class="profile-card__content">
+        <form class="form" id="delete-form">
+          <p>
+            Sind sie sicher, dass Sie den ausgewählten Arzt: {{ doctor().gender + " " +
+            doctor().title + " "}} {{ doctor().lastName }} Löschen möchten?
+          </p>
+          <div class="profile-card__actions">
+            <button type="button" class="btn btn-edit" (click)="onDeleteConfirmClick()">Ja</button>
+            <button type="button" class="btn btn-delete" (click)="onDeleteCancelClick()">
+              Abbrechen
+            </button>
+          </div>
+        </form>
+      </div>
+    </article>
   </div>
 </div>
