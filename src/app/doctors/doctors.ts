@@ -19,7 +19,7 @@ export class Doctors implements OnInit{
   ) { }
 
   private readDoctorList(): DoctorList {
-    const stored = this.storage.getJson('docList');
+    const stored = this.storage.getJson('doclist');
     if (!stored || !Array.isArray((stored as DoctorList).doctorItem)) {
       return { doctorItem: [] };
     }
