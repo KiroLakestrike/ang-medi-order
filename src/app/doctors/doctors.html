@@ -1,16 +1,17 @@
 <div class="container">
-  <div class="profile__header">
-    <div class="profile__actions">
-      <button type="button" class="btn btn-new" (click)="onNewClick()">Neuer Arzt</button>
+  <div class="card-container">
+    <div class="profile__header">
+      <div class="profile__actions">
+        <button type="button" class="btn btn-new" (click)="onNewClick()">Neuer Arzt</button>
+      </div>
     </div>
+    @for (item of doctors.doctorItem; track item.uuid) {
+    <app-doctor-card [doctor]="item" (reloadEvent)="reloadDoctors()"> </app-doctor-card>
+    } @empty {
+    <p>Noch keine Ärzte...</p>
+    }
   </div>
-  @for (item of doctors.doctorItem; track item.uuid) {
-  <app-doctor-card [doctor]="item" (reloadEvent)="reloadDoctors()"> </app-doctor-card>
-  } @empty {
-  <p>Noch keine Ärzte...</p>
-  }
 </div>
-
 <div class="modal hide" [class.show]="mode === 'new'">
   <div class="model__content">
     <div class="profile-card">
