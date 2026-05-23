@@ -18,6 +18,14 @@ export class Doctors implements OnInit{
     private randomGen: RandomGenService,
   ) { }
 
+  private readDoctorList(): DoctorList {
+    const stored = this.storage.getJson('docList');
+    if (!stored || !Array.isArray((stored as DoctorList).doctorItem)) {
+      return { doctorItem: [] };
+    }
+    return stored as DoctorList;
+  }
+
   doctors: DoctorList = { doctorItem: [] };
   mode: 'normal' | 'new' = 'normal';
 
@@ -41,7 +49,7 @@ export class Doctors implements OnInit{
   };
 
   loadDoctors(): void {
-    this.doctors = this.storage.getJson('doclist') ?? { doctorItem: [] };
+    this.doctors = this.readDoctorList();
   };
 
   reloadDoctors(): void {
@@ -56,7 +64,7 @@ export class Doctors implements OnInit{
   onSaveClick(form: NgForm) {
     if (form.invalid) return;
 
-    const stored: DoctorList = this.storage.getJson('doclist') ?? { doctorItem: [] }
+    const stored: DoctorList = this.readDoctorList();
 
     const doctorToSave: DoctorItem = {
       ...this.newDoctor,
