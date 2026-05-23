@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MedicationCard } from './medication-card/medication-card';
 import { MedicationForm } from './medication-form/medication-form';
-import { MedicationItem, MedicationList } from './medication.model';
+import { MedicationList } from './medication.model';
 import { HandleStorageService } from '@kirolakestrike/lakestrike-services';
 import { DoctorList } from '../doctors/doctors.models';
 
@@ -13,11 +13,31 @@ import { DoctorList } from '../doctors/doctors.models';
 })
 export class Medications implements OnInit {
   constructor(private storage: HandleStorageService) {}
+
   mode: 'normal' | 'modal' = 'normal';
+  formMode: 'none' | 'new' | 'edit' | 'delete' = 'none';
+
+  activeDoctor = '';
+  activeMedication = '';
+
   medicationList: MedicationList = { medicationItem: [] };
   doctorList: DoctorList = { doctorItem: [] };
 
-  
+  private readDoctorList(): DoctorList {
+    const stored = this.storage.getJson('doclist');
+    if (!stored || !Array.isArray((stored as DoctorList).doctorItem)) {
+      return { doctorItem: [] };
+    }
+    return stored as DoctorList;
+  }
+
+  private readMedicationList(): MedicationList {
+    const stored = this.storage.getJson('medlist');
+    if (!stored || !Array.isArray((stored as MedicationList).medicationItem)) {
+      return { medicationItem: [] };
+    }
+    return stored as MedicationList;
+  }
 
   ngOnInit(): void {
     this.loadMedications();
@@ -25,19 +45,28 @@ export class Medications implements OnInit {
   }
 
   loadMedications(): void {
-    this.medicationList = this.storage.getJson('medlist') ?? { medicationItem: [] }
+    this.medicationList = this.readMedicationList();
   }
 
   loadDoctors(): void {
-    this.doctorList = this.storage.getJson('doclist') ?? { doctorItem: [] }
+    this.doctorList = this.readDoctorList();
   }
 
   reloadMedications(): void {
     this.loadMedications();
   }
 
-  onNewClick() {
+  onNewClick(uuid: string): void {
     this.mode = 'modal';
+    this.formMode = 'new';
+    this.activeDoctor = uuid;
+    this.activeMedication = '';
   }
-  
+
+  onFormChange(event: { mode: 'edit' | 'delete'; medicationId: string; doctorId: string }): void {
+    this.mode = 'modal';
+    this.formMode = event.mode;
+    this.activeMedication = event.medicationId;
+    this.activeDoctor = event.doctorId;
+  }
 }

@@ -1,1 +1,16 @@
-<p>medication-form works!</p>
+<div class="profile-card">
+  <p>
+    @if (mode() === 'new') {
+      Neues Medikament erstellen
+    }
+    @if (mode() === 'edit') {
+      Medikament bearbeiten
+    }
+    @if (mode() === 'delete') {
+      Medikament löschen
+    }
+  </p>
+
+  <p>Current Doctor: {{ doctor() }}</p>
+  <p>Current Medication: {{ medicationId() }}</p>
+</div>

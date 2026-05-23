@@ -3,7 +3,6 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { DoctorCard } from './doctor-card/doctor-card';
 import { HandleStorageService, RandomGenService } from '@kirolakestrike/lakestrike-services';
 import type { DoctorItem, DoctorList } from './doctors.models';
-import { ProfileItem } from '../profiles/profiles.model';
 
 @Component({
   selector: 'app-doctors',
@@ -17,6 +16,14 @@ export class Doctors implements OnInit{
     public storage: HandleStorageService,
     private randomGen: RandomGenService,
   ) { }
+
+  private readDoctorList(): DoctorList {
+    const stored = this.storage.getJson('doclist');
+    if (!stored || !Array.isArray((stored as DoctorList).doctorItem)) {
+      return { doctorItem:[] }
+    }
+    return stored as DoctorList;
+  }
 
   doctors: DoctorList = { doctorItem: [] };
   mode: 'normal' | 'new' = 'normal';
@@ -41,7 +48,7 @@ export class Doctors implements OnInit{
   };
 
   loadDoctors(): void {
-    this.doctors = this.storage.getJson('doclist') ?? { doctorItem: [] };
+    this.doctors = this.readDoctorList();
   };
 
   reloadDoctors(): void {
@@ -56,7 +63,7 @@ export class Doctors implements OnInit{
   onSaveClick(form: NgForm) {
     if (form.invalid) return;
 
-    const stored: DoctorList = this.storage.getJson('doclist') ?? { doctorItem: [] }
+    const stored: DoctorList = this.readDoctorList();
 
     const doctorToSave: DoctorItem = {
       ...this.newDoctor,
