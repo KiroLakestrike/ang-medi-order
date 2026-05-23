@@ -1,12 +1,14 @@
 import { Injectable, signal } from '@angular/core';
 import { HandleStorageService } from '@kirolakestrike/lakestrike-services';
+import { IconService } from './core/services/icon-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AppConfig {
   // Basic App Settings
-  constructor(public storage: HandleStorageService) { }
+  constructor(public storage: HandleStorageService,
+    private iconService: IconService) { }
 
   colorMode = signal<string>('blue');
   colorList = ['blue', 'yellow', 'green', 'purple'];
@@ -18,7 +20,8 @@ export class AppConfig {
   loadSettings(): void {
     // once loaded and set, set the applications color config.
     this.loadColorSettings();
-    this.loadBrightnessSettings()
+    this.loadBrightnessSettings();
+    this.iconService.init();
   }
 
   loadColorSettings() {

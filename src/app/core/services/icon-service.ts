@@ -10,8 +10,11 @@ export class IconService {
   private domSenitizer = inject(DomSanitizer);
 
   init(): void {
-    this.register('home');
+    this.register('test');
   }
 
+  private register(name: string): void {
+    this.matIconRegistry.addSvgIcon(name, this.domSenitizer.bypassSecurityTrustResourceUrl(`/icons/${name}.svg`))
+  }
   
 }

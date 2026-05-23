@@ -5,9 +5,10 @@
     </div>
   </div>
   @for (item of medicationList.medicationItem; track item.uuid) {
-  <app-doctor-card (reloadEvent)="reloadMedications()"> </app-doctor-card>
+  <app-medication-card (reloadEvent)="reloadMedications()"></app-medication-card>
   } @empty {
   <p>Noch keine Medis...</p>
+  <app-medication-card></app-medication-card>
   }
 </div>
 
