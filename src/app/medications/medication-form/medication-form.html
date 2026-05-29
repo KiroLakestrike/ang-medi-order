@@ -75,15 +75,15 @@
         </button>
       </div>
     </form>
+
     } @if (mode() === 'delete') {
-    <p>Sicher dass sie</p>
+    <div class="profile-card__content">
+      <p>Sicher dass sie das Medikament löschen wollen?</p>
+      <small class="invalid">Hinweis: Diese Aktion kann nicht rückgängig gemacht werden.</small>
+    </div>
     <div class="profile-card__actions">
-      <button type="button" class="btn btn-edit" (click)="confirmDelete()">
-        Löschen
-      </button>
-      <button type="button" class="btn btn-delete" (click)="cancelDelete()">
-        Abbrechen
-      </button>
+      <button type="button" class="btn btn-edit" (click)="confirmDelete()">Löschen</button>
+      <button type="button" class="btn btn-delete" (click)="cancelDelete()">Abbrechen</button>
     </div>
     }
   </div>

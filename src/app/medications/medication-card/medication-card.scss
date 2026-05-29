@@ -1,11 +1,42 @@
-.medication-container{
+@use 'index' as *;
+
+.medication-card {
+  display: grid;
+  grid-template-rows: 1fr, 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: $sp-20;
+  border: 1px solid var(--border-color);
+  border-radius: $sp-8;
+  padding: $sp-10;
+}
+
+.medication-card__title {
+  grid-area: 1 / 1 / 2 / 4;
+  display: flex;
+  gap: $sp-12;
+}
+
+.medication-card__title_label {
+  font-size: $fs-18;
+}
+
+.medication-card__content {
+   grid-area: 2 / 1 / 3 / 3; 
+}
+
+.medication-card__actions{
+  grid-area: 2 / 3 / 3 / 4;
   display:flex;
-  flex-direction: column;
-  width: 200px;
+  gap: $sp-10;
 }
 
 mat-icon {
-  width: 24px;
-  height: 24px;
-  color: var(--text-color-dark);
+  color: var(--accent-color);
 }
+
+.btn mat-icon {
+  color: white;
+}
+
