@@ -7,7 +7,7 @@
   </div>
   <div class="profile-card__content">
     @if(mode()==='new' || mode()=== 'edit') {
-    <form class="form" id="form" #medForm="ngForm" (ngSubmit)="submitForm(medForm)" novalidation>
+    <form class="form" id="form" #medForm="ngForm" (ngSubmit)="submitForm(medForm)" novalidate>
       <div class="form__row">
         <label class="form__group">
           <span class="form__label">Medikament Name</span>
@@ -44,10 +44,10 @@
             [(ngModel)]="medicationItem.symbol"
             required
           />
-          @if (name.invalid && (name.touched || medForm.submitted)) {
+          @if (symbol.invalid && (symbol.touched || medForm.submitted)) {
           <div>
-            @if (name.hasError('required')) {
-            <small class="invalid">Medikamentenname ist erforderlich</small>
+            @if (symbol.hasError('required')) {
+            <small class="invalid">Bitte Symbol Wählen</small>
             }
           </div>
           }

@@ -42,7 +42,7 @@
 
 .green {
   --accent-color-light: #{$green-600};
-  --accent-color-dark: #{$green-800}
+  --accent-color-dark: #{$green-800};
   --accent-text-color: #{$zinc-100};
 }
 
@@ -106,7 +106,7 @@
   --accent-color-dark: #{$white};
   --accent-text-color: #{$black};
 }
---accent-color-light: #{$white};
+
 * {
   box-sizing: border-box;
   margin: 0;
