@@ -1,0 +1,13 @@
+@use 'index' as *;
+
+.med-grid {
+  display: grid;
+  grid-template-rows: repeat(auto-fill, minmax(1fr));
+  gap: $sp-16;
+  padding: $sp-12;
+}
+
+.med-grid > * {
+  min-height: 120px;
+  max-height: 120px;
+}

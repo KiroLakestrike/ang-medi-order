@@ -2,7 +2,6 @@ import { Component, EventEmitter, input, Output } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import type { DoctorItem, DoctorList } from '../doctors.models';
 import { HandleStorageService } from '@kirolakestrike/lakestrike-services';
-import { ProfileList } from '../../profiles/profiles.model';
 
 @Component({
   selector: 'app-doctor-card',

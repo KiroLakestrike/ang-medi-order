@@ -1,1 +1,19 @@
-<p>medication-card works!</p>
+<div class="medication-container">
+  <div class="medication-card">
+    <div class="medication-card__title">
+      <mat-icon svgIcon="{{ medication.symbol }}"></mat-icon>
+      <h2 class="medication-card__title_label"> {{ medication.name }}</h2>
+    </div>
+    <div class="medication-card__content">
+      {{ medication.description }}
+    </div>
+    <div class="medication-card__actions">
+      <button type="button" class="btn btn-edit" (click)="onEditClick()">
+        <mat-icon svgIcon="edit" class="mat-icon__buttons"></mat-icon>
+      </button>
+      <button type="button" class="btn btn-delete" (click)="onDeleteClick()">
+        <mat-icon svgIcon="delete"></mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

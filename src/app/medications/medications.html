@@ -1,1 +1,43 @@
-<p>medications works!</p>
+<div class="container">
+  <div class="card-container">
+    <div class="profile__header">
+      @for (doctor of doctorList.doctorItem; track doctor.uuid) {
+      <div class="profile-card">
+        <div class="profile-card__top">
+          <h2 class="profile-card__title">
+            <p>{{ doctor.gender + " " + doctor.title + " " + doctor.lastName }}</p>
+            <small>{{ doctor.description }}</small>
+          </h2>
+        </div>
+
+        <div class="med-grid">
+          @for (item of medicationList.medicationItem; track item.uuid) { @if (item.doctor ===
+          doctor.uuid) {
+          <app-medication-card [medication]="item" (formChange)="onFormChange($event)">
+          </app-medication-card>
+          } } @empty {
+          <p>Noch keine Medikamente erfasst</p>
+          }
+        </div>
+        <div class="profile-card__actions">
+          <button type="button" class="btn btn-new" (click)="onNewClick(doctor.uuid)">
+            Neues Medikament
+          </button>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>
+<div class="modal hide" [class.show]="mode === 'modal'">
+  <div class="modal__content">
+    <app-medication-form
+      [mode]="formMode"
+      [doctor]="activeDoctor"
+      [selectedMedication]="selectedMedication"
+      (reloadEvent)="reloadMedications()"
+      (cancelEvent)="reloadMedications()"
+    >
+    </app-medication-form>
+  </div>
+</div>

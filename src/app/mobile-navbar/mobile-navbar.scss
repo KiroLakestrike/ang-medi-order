@@ -17,12 +17,16 @@ nav {
     var(--background-color-dark) 100%
   );
 
-  color: var(--accent-color, purple);
+  color: var(--accent-color-light, purple);
   z-index: 3;
 }
 
 svg {
-  fill: var(--accent-color);
+  fill: var(--accent-color-light);
+
+  &:hover {
+    fill: var(--accent-color-dark);
+  }
 }
 
 a {

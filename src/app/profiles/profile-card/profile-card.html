@@ -1,4 +1,4 @@
-<article class="profile-card">
+<div class="profile-card">
   <div class="profile-card__top">
     <h2 class="profile-card__title">{{ profile().firstName + " " + profile().lastName }}</h2>
   </div>
@@ -24,11 +24,11 @@
     <button type="button" class="btn btn-edit" (click)="onEditClick()">Bearbeiten</button>
     <button type="button" class="btn btn-delete" (click)="onDeleteClick()">Löschen</button>
   </div>
-</article>
+</div>
 
 <div class="modal hide" [class.show]="mode === 'edit'">
   <div class="modal__content">
-    <article class="profile-card">
+    <div class="profile-card">
       <div class="profile-card__top">
         <h2 class="profile-card__title">Profil bearbeiten</h2>
       </div>
@@ -169,13 +169,13 @@
           </div>
         </form>
       </div>
-    </article>
+    </div>
   </div>
 </div>
 
 <div class="modal hide" [class.show]="mode === 'delete'">
   <div class="modal__content">
-    <article class="profile-card">
+    <div class="profile-card">
       <div class="profile-card__top">
         <h2 class="profile-card__title">Profil Löschen</h2>
       </div>
@@ -194,6 +194,6 @@
           </div>
         </form>
       </div>
-    </article>
+    </div>
   </div>
 </div>

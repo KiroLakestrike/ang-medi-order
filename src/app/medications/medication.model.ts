@@ -3,6 +3,7 @@ export interface MedicationList {
 }
 
 export interface MedicationItem {
+  uuid: string;
   name: string;
   symbol: string;
   amount: string;

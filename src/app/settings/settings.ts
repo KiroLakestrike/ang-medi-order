@@ -8,19 +8,14 @@ import { HandleStorageService } from '@kirolakestrike/lakestrike-services';
   templateUrl: './settings.html',
   styleUrl: './settings.scss',
 })
-
 export class Settings {
   constructor(
     public config: AppConfig,
     public storage: HandleStorageService,
   ) {}
 
-  // TODO: Not too happy with the color and brightness changers.
-  // Need to add a way to pop the newly active from
-
   // Color Change Settings
   onColorChange(value: string, list: string[]) {
-
     // we remove the given value from the array,
     const newList = this.removeItemOnce([...list], value);
     console.log(value);
@@ -45,7 +40,7 @@ export class Settings {
 
     this.storage.setString('brightness-mode', value);
     this.config.colorMode.set(value);
-}
+  }
 
   private removeItemOnce(arr: string[], value: string) {
     var index = arr.indexOf(value);
