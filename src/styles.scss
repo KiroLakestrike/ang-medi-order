@@ -29,35 +29,51 @@
 }
 
 .blue {
-  --accent-color: #{$blue-600};
+  --accent-color-light: #{$blue-600};
+  --accent-color-dark: #{$blue-800};
+  --accent-text-color: #{$zinc-100};
 }
 
 .blue.dark {
-  --accent-color: #{$blue-500};
+  --accent-color-light: #{$blue-500};
+  --accent-color-dark: #{$blue-700};
+  --accent-text-color: #{$zinc-100};
 }
 
 .green {
-  --accent-color: #{$green-600};
+  --accent-color-light: #{$green-600};
+  --accent-color-dark: #{$green-800}
+  --accent-text-color: #{$zinc-100};
 }
 
 .green.dark {
-  --accent-color: #{$green-500};
+  --accent-color-light: #{$green-500};
+  --accent-color-dark: #{$green-700};
+  --accent-text-color: #{$zinc-100};
 }
 
 .yellow {
-  --accent-color: #{$yellow-500};
+  --accent-color-light: #{$yellow-500};
+  --accent-color-dark: #{$yellow-700};
+  --accent-text-color: #{$zinc-800};
 }
 
 .yellow.dark {
-  --accent-color: #{$yellow-400};
+  --accent-color-light: #{$yellow-400};
+  --accent-color-dark: #{$yellow-600};
+  --accent-text-color: #{$zinc-800};
 }
 
 .purple {
-  --accent-color: #{$purple-700};
+  --accent-color-light: #{$purple-700};
+  --accent-color-dark: #{$purple-900};
+  --accent-text-color: #{$zinc-100};
 }
 
 .purple.dark {
-  --accent-color: #{$purple-600};
+  --accent-color-light: #{$purple-600};
+  --accent-color-dark: #{$purple-800};
+  --accent-text-color: #{$zinc-100};
 }
 
 .dark {
@@ -86,9 +102,11 @@
 
   --surface-color-light: #{$black};
   --surface-color-dark: #{$black};
-  --accent-color: #{$white};
+  --accent-color-light: #{$white};
+  --accent-color-dark: #{$white};
+  --accent-text-color: #{$black};
 }
-
+--accent-color-light: #{$white};
 * {
   box-sizing: border-box;
   margin: 0;
@@ -230,13 +248,13 @@ ul {
 }
 
 .btn-new {
-  background: #98fb98;
-  color: var(--danger);
+  background: var(--accent-color-light);
+  color: var(--accent-text-color);
+  font-weight: 900;
 }
 
 .btn-new:hover {
-  background: #00fa9a;
-  color: var(--danger-hover);
+  background: var(--accent-color-dark);
 }
 
 @media (max-width: 640px) {
@@ -323,8 +341,8 @@ ul {
 }
 
 .form__input:focus {
-  border-color: var(--accent-color);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-color) 80%, transparent);
+  border-color: var(--accent-color-light);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-color-light) 80%, transparent);
 }
 
 .form__input:disabled {
