@@ -13,19 +13,13 @@
   </div>
 </div>
 <div class="modal hide" [class.show]="mode === 'new'">
-  <div class="model__content">
+  <div class="modal__content">
     <div class="profile-card">
       <div class="profile-card__top">
         <h2 class="profile-card__title">Neuen Doktor erstellen</h2>
       </div>
       <div class="profile-card__content">
-        <form
-          class="form hide"
-          id="new-form"
-          #form="ngForm"
-          (ngSubmit)="onSaveClick(form)"
-          novalidate
-        >
+        <form class="form" id="new-form" #form="ngForm" (ngSubmit)="onSaveClick(form)" novalidate>
           <div class="form__row">
             <label class="form__group">
               <span class="form__label">Titel</span>
