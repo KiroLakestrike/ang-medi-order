@@ -1,1 +1,93 @@
-<p>orders works!</p>
+<div class="container">
+  <div class="card-container">
+    @if(activeProfile.uuid !== '') {
+    <div class="profile-card">
+      <div class="profile-card__top">
+        <h3>Ausgewähltes Profil:</h3>
+      </div>
+      <div class="profile-card__content">
+        <p>{{ activeProfile.firstName + " " + activeProfile.lastName }}</p>
+        @if (activeDoctor.uuid !== '') {
+        <p>{{ activeDoctor.gender + " " + activeDoctor.title + " " + activeDoctor.lastName }}</p>
+
+        }
+      </div>
+      <div class="profile-card__actions">
+        <button type="button" class="btn btn-delete" (click)="resetSelectedProfile()">
+          Zurück
+        </button>
+      </div>
+    </div>
+    } @if(activeProfile.uuid === '') { @for(profile of profileList.profileItem; track profile.uuid )
+    {
+    <div class="profile-card">
+      <div class="profile-card__top">
+        <h2 class="profile-card__title">Bitte Profil Auswählen</h2>
+      </div>
+      <div class="profile-card__content">
+        <div class="profile-card">
+          <div class="profile-card__top">
+            <h2 class="profile-card__title">{{ profile.firstName + " " + profile.lastName }}</h2>
+          </div>
+          <div class="profile-card__content">
+            <p>{{ profile.description }}</p>
+            <p>{{ profile.dateOfBirth | date:'dd.MM.yyyy'}}</p>
+          </div>
+          <div class="profile-card__actions">
+            <button type="button" class="btn btn-edit" (click)="onSelectProfile(profile)">
+              Auswählen
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    } @empty {
+    <p>
+      Noch keine Profile erstellt. <br />
+      Bitte erst ein Profil erstellen.
+    </p>
+    } } @if( activeProfile.uuid !== '' && activeDoctor.uuid === '') {
+    <div class="profile-card">
+      <div class="profile-card__top">
+        <h2 class="profile-card__title">Bitte Arzt auswählen</h2>
+      </div>
+      <div class="profile-card__content">
+        @for(doctor of doctorList.doctorItem; track doctor.uuid) {
+        <div class="profile-card">
+          <div class="profile-card__top">
+            <h2 class="profile-card__title">
+              {{ doctor.gender + " " + doctor.title + " " + doctor.lastName }}
+            </h2>
+          </div>
+          <div class="profile-card__content">
+            <p>{{doctor.description}}</p>
+          </div>
+          <div class="profile-card__content">
+            <ul>
+              @for( med of medicationList.medicationItem; track med.uuid ){ @if (med.doctor ===
+              doctor.uuid) {
+              <li>{{ med.name }}</li>
+              } }
+            </ul>
+          </div>
+
+          <div class="profile-card__actions">
+            <button type="button" class="btn btn-edit" (click)="onSelectDoctor(doctor)">
+              Arzt Auswählen
+            </button>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+    } @if(activeProfile.uuid !== '' && activeDoctor.uuid !== '') { 
+    @for (med of medicationList.medicationItem; track med.uuid) {
+      @if (med.doctor === activeDoctor.uuid) {
+      
+        {{ med.name }} 
+      }
+    }
+    
+    }
+  </div>
+</div>
